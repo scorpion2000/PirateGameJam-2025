@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3jlll0lpqj83"]
+
+[ext_resource type="Script" path="res://Main/spell_test.gd" id="1_cwvrp"]
+
+[node name="SpellTest" type="Node2D"]
+script = ExtResource("1_cwvrp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -336.0
+offset_top = -307.0
+offset_right = 336.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_right = 66.0
+offset_bottom = 66.0
