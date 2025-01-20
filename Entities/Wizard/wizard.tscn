@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://cicwwp7spnimn"]
+
+[ext_resource type="Texture2D" uid="uid://ccuvd0w87e1lb" path="res://Entities/Wizard/wizard.png" id="1_v64wd"]
+
+[sub_resource type="Animation" id="Animation_pjij6"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 0.95), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wand:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.966667, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(13, -9), Vector2(13, -10)]
+}
+
+[sub_resource type="Animation" id="Animation_8w4nv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(13, -10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7j4mc"]
+_data = {
+"RESET": SubResource("Animation_8w4nv"),
+"idle": SubResource("Animation_pjij6")
+}
+
+[node name="Wizard" type="Node2D"]
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("1_v64wd")
+offset = Vector2(0, -12.5)
+region_enabled = true
+region_rect = Rect2(6, 7, 19, 25)
+
+[node name="Wand" type="Sprite2D" parent="."]
+position = Vector2(13, -10)
+texture = ExtResource("1_v64wd")
+region_enabled = true
+region_rect = Rect2(36, 15, 7, 17)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7j4mc")
+}
+autoplay = "idle"
