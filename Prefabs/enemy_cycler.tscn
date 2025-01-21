@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7g372cjotvp5"]
+
+[ext_resource type="Script" path="res://scripts/ui_enemy_cycle.gd" id="1_634if"]
+[ext_resource type="PackedScene" uid="uid://cicwwp7spnimn" path="res://Entities/Wizard/wizard.tscn" id="2_vup2v"]
+
+[node name="EnemyCycler" type="Node2D"]
+script = ExtResource("1_634if")
+emptyImage = ExtResource("2_vup2v")
+
+[node name="DEBUG CYCLE" type="Button" parent="."]
+offset_top = 152.0
+offset_right = 56.0
+offset_bottom = 183.0
+text = "CYCLE"
+
+[node name="DEBUG FILL" type="Button" parent="."]
+offset_left = 68.0
+offset_top = 152.0
+offset_right = 107.0
+offset_bottom = 183.0
+text = "FILL"
+
+[connection signal="pressed" from="DEBUG CYCLE" to="." method="_cycle"]
+[connection signal="pressed" from="DEBUG FILL" to="." method="_DEBUG_fill_array"]
