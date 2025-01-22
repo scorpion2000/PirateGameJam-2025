@@ -2,7 +2,7 @@ extends Node2D
 
 @export var emptyImage : PackedScene
 
-var imageWidth = 30
+var imageWidth = 120
 var sprites : Array[Node2D]
 var DEBUG = false
 
@@ -24,11 +24,12 @@ func _cycle():
 
 func _DEBUG_fill_array():
 	DEBUG = true
-	for i in range(0, 50):
+	for i in range(0, 10):
 		_DEBUG_generate_image(i)
 
 func _DEBUG_generate_image(pos : int):
-	var newSprite : Node2D = emptyImage.instantiate()
+	var newSprite : Enemy = emptyImage.instantiate()
 	add_child(newSprite)
 	newSprite.position = Vector2(imageWidth * pos, 0)
 	sprites.append(newSprite)
+	newSprite._damageOverride(ceil(randf_range(2, 10)))
