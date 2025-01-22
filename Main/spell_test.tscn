@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3jlll0lpqj83"]
+[gd_scene load_steps=3 format=3 uid="uid://d3jlll0lpqj83"]
 
 [ext_resource type="Script" path="res://Main/spell_test.gd" id="1_cwvrp"]
+[ext_resource type="PackedScene" uid="uid://bhqlk8ee611vw" path="res://UI/SpellCastingUI/gem_button.tscn" id="2_osnqv"]
 
 [node name="SpellTest" type="Node2D"]
 script = ExtResource("1_cwvrp")
@@ -21,7 +22,5 @@ offset_right = 336.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Button" type="Button" parent="CanvasLayer/Panel"]
+[node name="GemButton" parent="CanvasLayer/Panel" instance=ExtResource("2_osnqv")]
 layout_mode = 0
-offset_right = 66.0
-offset_bottom = 66.0

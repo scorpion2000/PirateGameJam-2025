@@ -18,6 +18,10 @@ config/icon="res://icon.svg"
 
 GlobalSpells="*res://Scripts/Spells/spells.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="PirateGameJam_1"

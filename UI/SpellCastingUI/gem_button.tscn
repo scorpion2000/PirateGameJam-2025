@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhqlk8ee611vw"]
+
+[ext_resource type="Script" path="res://UI/SpellCastingUI/gem_button.gd" id="1_pbkbv"]
+[ext_resource type="Texture2D" uid="uid://4je1tc6khmer" path="res://UI/SpellCastingUI/blue_gem.tres" id="2_5tmxm"]
+
+[node name="GemButton" type="Button"]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+script = ExtResource("1_pbkbv")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("2_5tmxm")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
