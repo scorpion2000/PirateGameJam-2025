@@ -32,6 +32,22 @@ func get_expected_result(input: Array[Spell]):
 	
 	return result
 
+func get_spell_result(input : Spell):
+	var result: Array[bool] = [false, false, false, false]
+
+	for condition in input.conditions:
+		
+		match condition.color:
+			SpellColor.RED:
+				result[0] = get_color_status(result[0], condition.status)
+			SpellColor.BLUE:
+				result[1] = get_color_status(result[1], condition.status)
+			SpellColor.GREEN:
+				result[2] = get_color_status(result[2], condition.status)
+			SpellColor.YELLOW:
+				result[3] = get_color_status(result[3], condition.status)
+	
+	return result
 
 # Checks if a certain button should be on or off
 func get_color_status(current_status, change):

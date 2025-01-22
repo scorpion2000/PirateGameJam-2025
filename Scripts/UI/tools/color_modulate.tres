@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://3n5n01togyod"]
+
+[ext_resource type="Shader" path="res://Scripts/UI/tools/color_shader.gdshader" id="1_jay1x"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_jay1x")
+shader_parameter/modulate_color = Vector4(1, 1, 1, 1)
