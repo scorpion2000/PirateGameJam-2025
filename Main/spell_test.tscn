@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3jlll0lpqj83"]
+[gd_scene load_steps=8 format=3 uid="uid://d3jlll0lpqj83"]
 
 [ext_resource type="Script" path="res://Main/spell_test.gd" id="1_cwvrp"]
+[ext_resource type="Script" path="res://Scripts/Spells/spell_manager.gd" id="2_mnw45"]
 [ext_resource type="PackedScene" uid="uid://bhqlk8ee611vw" path="res://UI/SpellCastingUI/gem_button.tscn" id="2_osnqv"]
+[ext_resource type="Texture2D" uid="uid://cg2ua61r8grt0" path="res://UI/SpellCastingUI/red_gem.tres" id="3_165gj"]
+[ext_resource type="Texture2D" uid="uid://4je1tc6khmer" path="res://UI/SpellCastingUI/blue_gem.tres" id="3_vnb7f"]
+[ext_resource type="Texture2D" uid="uid://bbep5mcf7b8g8" path="res://UI/SpellCastingUI/green_gem.tres" id="4_ed341"]
+[ext_resource type="Texture2D" uid="uid://b0l35m8anfghp" path="res://UI/SpellCastingUI/yellow_gem.tres" id="5_alpjs"]
 
 [node name="SpellTest" type="Node2D"]
 script = ExtResource("1_cwvrp")
@@ -10,17 +15,77 @@ script = ExtResource("1_cwvrp")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="SpellPanel" type="Panel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -336.0
-offset_top = -307.0
-offset_right = 336.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+script = ExtResource("2_mnw45")
 
-[node name="GemButton" parent="CanvasLayer/Panel" instance=ExtResource("2_osnqv")]
-layout_mode = 0
+[node name="CastButton" type="Button" parent="CanvasLayer/SpellPanel"]
+layout_mode = 2
+anchor_left = 0.408
+anchor_top = 0.818
+anchor_right = 0.592
+anchor_bottom = 1.0
+offset_left = -0.0160217
+offset_top = -0.0320129
+offset_right = 0.0159912
+offset_bottom = -15.0
+text = "CAST"
+metadata/row = 2
+metadata/column = 2
+
+[node name="CastWord" type="Label" parent="CanvasLayer/SpellPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+anchor_left = 0.408
+anchor_top = 0.046
+anchor_right = 0.592
+anchor_bottom = 0.145
+offset_left = -0.0160217
+offset_top = 0.0959988
+offset_right = 0.0159912
+offset_bottom = 0.0199966
+text = "Abra - Kadabra"
+horizontal_alignment = 1
+metadata/row = 0
+metadata/column = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SpellPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Red" parent="CanvasLayer/SpellPanel/HBoxContainer" instance=ExtResource("2_osnqv")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+icon = ExtResource("3_165gj")
+
+[node name="Blue" parent="CanvasLayer/SpellPanel/HBoxContainer" instance=ExtResource("2_osnqv")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+icon = ExtResource("3_vnb7f")
+
+[node name="Green" parent="CanvasLayer/SpellPanel/HBoxContainer" instance=ExtResource("2_osnqv")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+icon = ExtResource("4_ed341")
+
+[node name="Yellow" parent="CanvasLayer/SpellPanel/HBoxContainer" instance=ExtResource("2_osnqv")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+icon = ExtResource("5_alpjs")
