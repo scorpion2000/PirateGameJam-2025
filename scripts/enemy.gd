@@ -28,7 +28,6 @@ func _ready():
 				damage.type = DamageType.Type.SLASH
 			_:
 				damage.type = DamageType.Type.SLASH
-	_updateDisplay()
 
 func _updateDisplay():
 	damageValueText.text = str(damage.hitPoint)
