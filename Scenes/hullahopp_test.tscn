@@ -1,12 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://dnlmfv5qfr1fe"]
 
-[ext_resource type="Script" path="res://Scripts/turn_handler.gd" id="1_20ev8"]
+[ext_resource type="Script" path="res://scripts/turn_handler.gd" id="1_4oc5e"]
 [ext_resource type="PackedScene" uid="uid://c7g372cjotvp5" path="res://Prefabs/enemy_cycler.tscn" id="1_ryuv7"]
-[ext_resource type="Script" path="res://Scripts/player.gd" id="3_nuglw"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="3_iwhog"]
 [ext_resource type="PackedScene" uid="uid://cicwwp7spnimn" path="res://Entities/Wizard/wizard.tscn" id="3_xyost"]
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("enemyCycler", "player")]
-script = ExtResource("1_20ev8")
+script = ExtResource("1_4oc5e")
 enemyCycler = NodePath("EnemyCycler")
 player = NodePath("Player")
 
@@ -14,7 +14,7 @@ player = NodePath("Player")
 position = Vector2(202, 157)
 
 [node name="Player" type="Node" parent="."]
-script = ExtResource("3_nuglw")
+script = ExtResource("3_iwhog")
 health = 100
 
 [node name="Wizard" parent="Player" instance=ExtResource("3_xyost")]
@@ -35,7 +35,7 @@ offset_right = 520.0
 offset_bottom = 483.0
 text = "SUCCESSFUL SPELLCAST"
 
-[node name="DEBUG SUCCESS2" type="Button" parent="."]
+[node name="DEBUG FAILURE" type="Button" parent="."]
 offset_left = 327.0
 offset_top = 493.0
 offset_right = 520.0
@@ -43,4 +43,4 @@ offset_bottom = 524.0
 text = "FAILED SPELLCAST"
 
 [connection signal="pressed" from="DEBUG SUCCESS" to="." method="_endOfTurn" binds= [true]]
-[connection signal="pressed" from="DEBUG SUCCESS2" to="." method="_endOfTurn" binds= [false]]
+[connection signal="pressed" from="DEBUG FAILURE" to="." method="_endOfTurn" binds= [false]]

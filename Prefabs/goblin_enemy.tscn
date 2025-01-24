@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://cct3m3hxs41ul"]
 
 [ext_resource type="PackedScene" uid="uid://bwnbdh03fgrh0" path="res://Entities/Enemies/Goblin/goblin.tscn" id="1_7b7tn"]
-[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_ubfuc"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_sq6p1"]
 
 [node name="Goblin Enemy" type="Node2D"]
-script = ExtResource("1_ubfuc")
+script = ExtResource("1_sq6p1")
 damageType = 1
 damagePoints = 5
 
