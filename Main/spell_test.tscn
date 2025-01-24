@@ -1,6 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3jlll0lpqj83"]
+[gd_scene load_steps=11 format=3 uid="uid://d3jlll0lpqj83"]
 
 [ext_resource type="Script" path="res://Main/spell_test.gd" id="1_cwvrp"]
+[ext_resource type="Texture2D" uid="uid://o4sog6c85b7o" path="res://Environment/Backgrounds/trees.png" id="2_2kbxk"]
+[ext_resource type="Texture2D" uid="uid://bb3j6qardd47i" path="res://Environment/Backgrounds/floor.png" id="2_l3aid"]
 [ext_resource type="Script" path="res://Scripts/Spells/spell_manager.gd" id="2_mnw45"]
 [ext_resource type="PackedScene" uid="uid://bhqlk8ee611vw" path="res://UI/SpellCastingUI/gem_button.tscn" id="2_osnqv"]
 [ext_resource type="Texture2D" uid="uid://cg2ua61r8grt0" path="res://UI/SpellCastingUI/red_gem.tres" id="3_165gj"]
@@ -15,6 +17,20 @@ script = ExtResource("1_cwvrp")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
 
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Back" type="Sprite2D" parent="Background"]
+position = Vector2(0, -44)
+texture = ExtResource("2_2kbxk")
+region_enabled = true
+region_rect = Rect2(0, 0, 288, 78)
+
+[node name="Ground" type="Sprite2D" parent="Background"]
+position = Vector2(0, -7)
+texture = ExtResource("2_l3aid")
+region_enabled = true
+region_rect = Rect2(0, 64, 288, 64)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="SpellPanel" type="Panel" parent="CanvasLayer"]
@@ -22,6 +38,7 @@ anchors_preset = -1
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 26.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_mnw45")
