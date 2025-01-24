@@ -15,7 +15,7 @@ func _ready() -> void:
 	
 	# Add 2 random spells to start
 	for i in 2:
-		var random: int = randi_range(0, spell_pool.size())
+		var random: int = randi_range(0, spell_pool.size() - 1)
 		spells.append(spell_pool[random])
 		spell_pool.remove_at(random)
 	
