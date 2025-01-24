@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dnlmfv5qfr1fe"]
 
-[ext_resource type="Script" path="res://scripts/turn_handler.gd" id="1_20ev8"]
+[ext_resource type="Script" path="res://Scripts/turn_handler.gd" id="1_20ev8"]
 [ext_resource type="PackedScene" uid="uid://c7g372cjotvp5" path="res://Prefabs/enemy_cycler.tscn" id="1_ryuv7"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="3_nuglw"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="3_nuglw"]
 [ext_resource type="PackedScene" uid="uid://cicwwp7spnimn" path="res://Entities/Wizard/wizard.tscn" id="3_xyost"]
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("enemyCycler", "player")]
