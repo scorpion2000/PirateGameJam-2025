@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3jlll0lpqj83"]
+[gd_scene load_steps=9 format=3 uid="uid://d3jlll0lpqj83"]
 
 [ext_resource type="Script" path="res://Main/spell_test.gd" id="1_cwvrp"]
 [ext_resource type="Script" path="res://Scripts/Spells/spell_manager.gd" id="2_mnw45"]
@@ -7,11 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://4je1tc6khmer" path="res://UI/SpellCastingUI/blue_gem.tres" id="3_vnb7f"]
 [ext_resource type="Texture2D" uid="uid://bbep5mcf7b8g8" path="res://UI/SpellCastingUI/green_gem.tres" id="4_ed341"]
 [ext_resource type="Texture2D" uid="uid://b0l35m8anfghp" path="res://UI/SpellCastingUI/yellow_gem.tres" id="5_alpjs"]
+[ext_resource type="PackedScene" uid="uid://cicwwp7spnimn" path="res://Entities/Wizard/wizard.tscn" id="8_nlg1d"]
 
 [node name="SpellTest" type="Node2D"]
 script = ExtResource("1_cwvrp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -56,9 +58,15 @@ metadata/column = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SpellPanel"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -50.0
+offset_right = 206.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -89,3 +97,6 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 icon = ExtResource("5_alpjs")
+
+[node name="Wizard" parent="." instance=ExtResource("8_nlg1d")]
+position = Vector2(-90, 0)
