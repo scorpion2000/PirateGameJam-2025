@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b0l35m8anfghp" path="res://UI/SpellCastingUI/yellow_gem.tres" id="5_alpjs"]
 [ext_resource type="PackedScene" uid="uid://cicwwp7spnimn" path="res://Entities/Wizard/wizard.tscn" id="8_nlg1d"]
 [ext_resource type="Script" path="res://Entities/Wizard/wizard_speech_panel.gd" id="10_pfvie"]
-[ext_resource type="Texture2D" uid="uid://bbbpkrojfvemv" path="res://Scripts/Spells/SpellBook/book.png" id="12_pp4gk"]
+[ext_resource type="PackedScene" uid="uid://3jawxaqfumoj" path="res://Scripts/Spells/SpellBook/spell_book.tscn" id="12_8rvb5"]
 
 [node name="SpellTest" type="Node2D"]
 script = ExtResource("1_cwvrp")
@@ -137,35 +137,17 @@ layout_mode = 2
 bbcode_enabled = true
 text = "[center][wave amp=5.0 freq=0.5 connected=0]{text}[/wave][/center]"
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -328.0
-offset_top = -209.0
-offset_right = 328.0
-offset_bottom = 319.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(328, 264)
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("12_pp4gk")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TextureRect"]
+[node name="OpenSpellBook" type="Button" parent="CanvasLayer/SpellPanel"]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 308.0
-offset_bottom = 504.0
+offset_left = 36.0
+offset_top = 100.0
+offset_right = 121.0
+offset_bottom = 189.0
+text = "SpellBook"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TextureRect/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/TextureRect/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "ewe"
+[node name="SpellBook" parent="CanvasLayer" instance=ExtResource("12_8rvb5")]
+offset_top = 352.0
+offset_bottom = 880.0
 
 [connection signal="button_down" from="CanvasLayer/SpellPanel/CastButton" to="CanvasLayer/SpellPanel" method="_on_cast_button_down"]
+[connection signal="button_down" from="CanvasLayer/SpellPanel/OpenSpellBook" to="CanvasLayer/SpellPanel" method="_on_open_spell_book_button_down"]

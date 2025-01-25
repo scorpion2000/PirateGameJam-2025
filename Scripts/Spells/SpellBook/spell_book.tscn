@@ -1,26 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://3jawxaqfumoj"]
+[gd_scene load_steps=3 format=3 uid="uid://3jawxaqfumoj"]
 
 [ext_resource type="Texture2D" uid="uid://bbbpkrojfvemv" path="res://Scripts/Spells/SpellBook/book.png" id="1_scu57"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellBook/spell_book.gd" id="2_k3mqr"]
-[ext_resource type="Texture2D" uid="uid://csq5vbgcckpm" path="res://Scripts/Spells/SpellBook/spell_condition.png" id="2_n0cfr"]
-[ext_resource type="Script" path="res://Scripts/Spells/SpellBook/condition_display.gd" id="3_5ur6g"]
-[ext_resource type="Texture2D" uid="uid://quv8uiyslqs7" path="res://Scripts/Spells/SpellBook/off_mark.tres" id="4_lsqan"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cq5wm"]
-atlas = ExtResource("2_n0cfr")
-region = Rect2(0, 0, 9, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_arkcr"]
-atlas = ExtResource("2_n0cfr")
-region = Rect2(8, 0, 9, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v6l81"]
-atlas = ExtResource("2_n0cfr")
-region = Rect2(16, 0, 9, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tp7hb"]
-atlas = ExtResource("2_n0cfr")
-region = Rect2(24, 0, 9, 9)
 
 [node name="SpellBook" type="TextureRect"]
 anchors_preset = 8
@@ -47,89 +28,11 @@ offset_top = 16.0
 offset_right = 308.0
 offset_bottom = 504.0
 
-[node name="SpellExample" type="HBoxContainer" parent="SpellGuide"]
-visible = false
-layout_mode = 2
-
-[node name="SpellName" type="Label" parent="SpellGuide/SpellExample"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Spell Name"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Red" type="TextureRect" parent="SpellGuide/SpellExample"]
-visible = false
-custom_minimum_size = Vector2(23, 0)
-layout_mode = 2
-texture = SubResource("AtlasTexture_cq5wm")
-script = ExtResource("3_5ur6g")
-
-[node name="Mark" type="TextureRect" parent="SpellGuide/SpellExample/Red"]
-custom_minimum_size = Vector2(23, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_lsqan")
-
-[node name="Blue" type="TextureRect" parent="SpellGuide/SpellExample"]
-visible = false
-custom_minimum_size = Vector2(23, 0)
-layout_mode = 2
-texture = SubResource("AtlasTexture_arkcr")
-script = ExtResource("3_5ur6g")
-
-[node name="Mark" type="TextureRect" parent="SpellGuide/SpellExample/Blue"]
-custom_minimum_size = Vector2(23, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_lsqan")
-
-[node name="Green" type="TextureRect" parent="SpellGuide/SpellExample"]
-visible = false
-custom_minimum_size = Vector2(23, 0)
-layout_mode = 2
-texture = SubResource("AtlasTexture_v6l81")
-script = ExtResource("3_5ur6g")
-
-[node name="Mark" type="TextureRect" parent="SpellGuide/SpellExample/Green"]
-custom_minimum_size = Vector2(23, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_lsqan")
-
-[node name="Yellow" type="TextureRect" parent="SpellGuide/SpellExample"]
-visible = false
-custom_minimum_size = Vector2(23, 0)
-layout_mode = 2
-texture = SubResource("AtlasTexture_tp7hb")
-script = ExtResource("3_5ur6g")
-
-[node name="Mark" type="TextureRect" parent="SpellGuide/SpellExample/Yellow"]
-custom_minimum_size = Vector2(23, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_lsqan")
-
 [node name="CloseButton" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 552.0
 offset_right = 605.0
 offset_bottom = 76.0
+
+[connection signal="button_down" from="CloseButton" to="." method="_on_close_button_down"]

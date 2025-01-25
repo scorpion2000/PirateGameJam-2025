@@ -45,3 +45,7 @@ func _on_cast_button_down() -> void:
 
 func speak(text: String):
 	$WizardSpeechPanel.set_speech(text)
+
+
+func _on_open_spell_book_button_down() -> void:
+	PlayerData.spell_book.set_open()

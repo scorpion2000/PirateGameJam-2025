@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3 uid="uid://kfh5oa5pvgnr"]
+
+[ext_resource type="Texture2D" uid="uid://csq5vbgcckpm" path="res://Scripts/Spells/SpellBook/spell_condition.png" id="1_d5708"]
+[ext_resource type="Script" path="res://Scripts/Spells/SpellBook/condition_display.gd" id="2_qkd5r"]
+[ext_resource type="Texture2D" uid="uid://quv8uiyslqs7" path="res://Scripts/Spells/SpellBook/off_mark.tres" id="3_mfhdf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq5wm"]
+atlas = ExtResource("1_d5708")
+region = Rect2(0, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arkcr"]
+atlas = ExtResource("1_d5708")
+region = Rect2(8, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6l81"]
+atlas = ExtResource("1_d5708")
+region = Rect2(16, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tp7hb"]
+atlas = ExtResource("1_d5708")
+region = Rect2(24, 0, 9, 9)
+
+[node name="SpellExample" type="HBoxContainer"]
+visible = false
+
+[node name="SpellName" type="Label" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Spell Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Red" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+texture = SubResource("AtlasTexture_cq5wm")
+script = ExtResource("2_qkd5r")
+
+[node name="Mark" type="TextureRect" parent="Red"]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_mfhdf")
+
+[node name="Blue" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+texture = SubResource("AtlasTexture_arkcr")
+script = ExtResource("2_qkd5r")
+
+[node name="Mark" type="TextureRect" parent="Blue"]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_mfhdf")
+
+[node name="Green" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+texture = SubResource("AtlasTexture_v6l81")
+script = ExtResource("2_qkd5r")
+
+[node name="Mark" type="TextureRect" parent="Green"]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_mfhdf")
+
+[node name="Yellow" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 2
+texture = SubResource("AtlasTexture_tp7hb")
+script = ExtResource("2_qkd5r")
+
+[node name="Mark" type="TextureRect" parent="Yellow"]
+custom_minimum_size = Vector2(23, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_mfhdf")
