@@ -37,10 +37,10 @@ func cast_spell():
 func _on_cast_button_down() -> void:
 	if current_result == GlobalSpells.get_expected_result(current_spell):
 		speak("Success")
-		cast_result.emit(true)
+		%TurnHandler._endOfTurn(true, 5)
 	else:
 		speak("Failure")
-		cast_result.emit(false)
+		%TurnHandler._endOfTurn(false)
 
 
 func speak(text: String):
@@ -52,3 +52,12 @@ func _on_open_spell_book_button_down() -> void:
 	var tween = create_tween()
 	tween.tween_property($OpenSpellBook/TextureRect, "rotation_degrees", 10.0, 0.1).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_ELASTIC)
 	tween.tween_property($OpenSpellBook/TextureRect, "rotation_degrees", 0.0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+
+
+func _on_hover_book(is_over: bool = true):
+	if is_over:
+		var tween = create_tween()
+		tween.tween_property($OpenSpellBook/TextureRect, "position", Vector2(33, 49), 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+	else:
+		var tween = create_tween()
+		tween.tween_property($OpenSpellBook/TextureRect, "position", Vector2(33, 51), 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)

@@ -25,3 +25,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_yn5gv")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_jx7qs")
+
+[connection signal="mouse_entered" from="." to="." method="_on_hover_book" binds= [true]]
+[connection signal="mouse_exited" from="." to="." method="_on_hover_book" binds= [false]]

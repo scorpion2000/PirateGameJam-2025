@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d3jlll0lpqj83"]
+[gd_scene load_steps=24 format=3 uid="uid://d3jlll0lpqj83"]
 
 [ext_resource type="Script" path="res://Main/spell_test.gd" id="1_cwvrp"]
 [ext_resource type="Texture2D" uid="uid://o4sog6c85b7o" path="res://Environment/Backgrounds/trees.png" id="2_2kbxk"]
@@ -8,13 +8,27 @@
 [ext_resource type="Texture2D" uid="uid://cg2ua61r8grt0" path="res://UI/SpellCastingUI/red_gem.tres" id="3_165gj"]
 [ext_resource type="Texture2D" uid="uid://4je1tc6khmer" path="res://UI/SpellCastingUI/blue_gem.tres" id="3_vnb7f"]
 [ext_resource type="Texture2D" uid="uid://bbep5mcf7b8g8" path="res://UI/SpellCastingUI/green_gem.tres" id="4_ed341"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="4_omskc"]
 [ext_resource type="Texture2D" uid="uid://b0l35m8anfghp" path="res://UI/SpellCastingUI/yellow_gem.tres" id="5_alpjs"]
+[ext_resource type="Script" path="res://Scripts/enemy_generator.gd" id="6_hxjg8"]
 [ext_resource type="Texture2D" uid="uid://dotqa0lprd0k2" path="res://Scripts/UI/bottom_panel.png" id="6_rsk1q"]
+[ext_resource type="PackedScene" uid="uid://cct3m3hxs41ul" path="res://Prefabs/goblin_enemy.tscn" id="7_2dqcm"]
+[ext_resource type="Script" path="res://Scripts/turn_handler.gd" id="7_eom2x"]
+[ext_resource type="PackedScene" uid="uid://7254c44kr7o6" path="res://Prefabs/empty_enemy.tscn" id="7_tuftr"]
 [ext_resource type="PackedScene" uid="uid://cicwwp7spnimn" path="res://Entities/Wizard/wizard.tscn" id="8_nlg1d"]
 [ext_resource type="Script" path="res://Entities/Wizard/wizard_speech_panel.gd" id="10_pfvie"]
 [ext_resource type="PackedScene" uid="uid://3jawxaqfumoj" path="res://Scripts/Spells/SpellBook/spell_book.tscn" id="12_8rvb5"]
 [ext_resource type="Texture2D" uid="uid://b85h06v8c67r6" path="res://Scripts/UI/book_icon.png" id="13_3ewc8"]
+[ext_resource type="Texture2D" uid="uid://cx24ccyd5k0xl" path="res://Scripts/UI/SpeechBubble/speech_bubble.png" id="14_hf5hp"]
 [ext_resource type="PackedScene" uid="uid://c7g372cjotvp5" path="res://Prefabs/enemy_cycler.tscn" id="15_mh5mx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dffhf"]
+atlas = ExtResource("14_hf5hp")
+region = Rect2(4, 1, 72, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mrha"]
+atlas = ExtResource("14_hf5hp")
+region = Rect2(32, 32, 16, 16)
 
 [node name="SpellTest" type="Node2D"]
 script = ExtResource("1_cwvrp")
@@ -36,13 +50,39 @@ texture = ExtResource("2_l3aid")
 region_enabled = true
 region_rect = Rect2(0, 64, 288, 64)
 
-[node name="Wizard" parent="." instance=ExtResource("8_nlg1d")]
+[node name="Player" type="Node" parent="."]
+script = ExtResource("4_omskc")
+health = 100
+
+[node name="Wizard" parent="Player" instance=ExtResource("8_nlg1d")]
 unique_name_in_owner = true
 position = Vector2(-90, 0)
 
-[node name="EnemyCycler" parent="." instance=ExtResource("15_mh5mx")]
-position = Vector2(-53, 0)
+[node name="HealthLabel" type="Label" parent="Player"]
+offset_left = -96.0
+offset_right = -56.0
+offset_bottom = 23.0
+scale = Vector2(0.3, 0.3)
+text = "0"
+horizontal_alignment = 1
+
+[node name="EnemyCycler" parent="." node_paths=PackedStringArray("monsterGenerator") instance=ExtResource("15_mh5mx")]
+unique_name_in_owner = true
+position = Vector2(-51, 0)
+monsterGenerator = NodePath("../EnemyGenerator")
 maxMonsters = 4
+
+[node name="TurnHandler" type="Node" parent="." node_paths=PackedStringArray("enemyCycler", "player")]
+unique_name_in_owner = true
+script = ExtResource("7_eom2x")
+enemyCycler = NodePath("../EnemyCycler")
+player = NodePath("../Player")
+
+[node name="EnemyGenerator" type="Node" parent="."]
+script = ExtResource("6_hxjg8")
+emptyEnemy = ExtResource("7_tuftr")
+enemies = Array[PackedScene]([ExtResource("7_2dqcm")])
+bosses = Array[PackedScene]([ExtResource("7_2dqcm")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -96,44 +136,83 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-icon = ExtResource("3_165gj")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/HBoxContainer/Red"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("3_165gj")
 
 [node name="Blue" parent="CanvasLayer/SpellPanel/HBoxContainer" instance=ExtResource("2_osnqv")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-icon = ExtResource("3_vnb7f")
 spell_color = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/HBoxContainer/Blue"]
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("3_vnb7f")
 
 [node name="Green" parent="CanvasLayer/SpellPanel/HBoxContainer" instance=ExtResource("2_osnqv")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-icon = ExtResource("4_ed341")
 spell_color = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/HBoxContainer/Green"]
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("4_ed341")
 
 [node name="Yellow" parent="CanvasLayer/SpellPanel/HBoxContainer" instance=ExtResource("2_osnqv")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-icon = ExtResource("5_alpjs")
 spell_color = 3
 
-[node name="WizardSpeechPanel" type="PanelContainer" parent="CanvasLayer/SpellPanel"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/HBoxContainer/Yellow"]
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("5_alpjs")
+
+[node name="WizardSpeechPanel" type="TextureRect" parent="CanvasLayer/SpellPanel"]
 layout_mode = 0
 offset_left = 66.0
-offset_top = -214.0
-offset_right = 508.0
-offset_bottom = -151.0
+offset_top = -229.0
+offset_right = 354.0
+offset_bottom = -145.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_dffhf")
 script = ExtResource("10_pfvie")
 
-[node name="Speech" type="RichTextLabel" parent="CanvasLayer/SpellPanel/WizardSpeechPanel"]
-layout_mode = 2
-bbcode_enabled = true
-text = "[center][wave amp=5.0 freq=0.5 connected=0]{text}[/wave][/center]"
+[node name="Speech" type="Label" parent="CanvasLayer/SpellPanel/WizardSpeechPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "qwerty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/WizardSpeechPanel"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 87.0
+offset_right = 260.0
+offset_bottom = 127.0
+texture = SubResource("AtlasTexture_4mrha")
 
 [node name="OpenSpellBook" type="Button" parent="CanvasLayer/SpellPanel"]
 self_modulate = Color(1, 1, 1, 0)
@@ -167,3 +246,5 @@ offset_bottom = 880.0
 
 [connection signal="button_down" from="CanvasLayer/SpellPanel/CastButton" to="CanvasLayer/SpellPanel" method="_on_cast_button_down"]
 [connection signal="button_down" from="CanvasLayer/SpellPanel/OpenSpellBook" to="CanvasLayer/SpellPanel" method="_on_open_spell_book_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/SpellPanel/OpenSpellBook" to="CanvasLayer/SpellPanel" method="_on_hover_book" binds= [true]]
+[connection signal="mouse_exited" from="CanvasLayer/SpellPanel/OpenSpellBook" to="CanvasLayer/SpellPanel" method="_on_hover_book" binds= [false]]
