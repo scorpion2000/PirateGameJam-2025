@@ -189,4 +189,5 @@ text = "[center][wave amp=5.0 freq=0.5 connected=0]{text}[/wave][/center]"
 [connection signal="pressed" from="EnemyCycler/DEBUG CYCLE" to="EnemyCycler" method="_cycle"]
 [connection signal="pressed" from="EnemyCycler/DEBUG FILL" to="EnemyCycler" method="_DEBUG_fill_array"]
 [connection signal="cast_result" from="CanvasLayer/SpellPanel" to="." method="_onCastResult"]
+[connection signal="cast_result" from="CanvasLayer/SpellPanel" to="Player/Wizard" method="_cast_result"]
 [connection signal="button_down" from="CanvasLayer/SpellPanel/CastButton" to="CanvasLayer/SpellPanel" method="_on_cast_button_down"]

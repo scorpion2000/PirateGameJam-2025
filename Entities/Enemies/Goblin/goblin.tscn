@@ -1,6 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwnbdh03fgrh0"]
+[gd_scene load_steps=7 format=3 uid="uid://bwnbdh03fgrh0"]
 
+[ext_resource type="Shader" path="res://Entities/Wizard/damage.gdshader" id="1_cahws"]
 [ext_resource type="Texture2D" uid="uid://c7ny5uh0ekfqk" path="res://Entities/Enemies/Goblin/goblin.png" id="1_g784o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ainwk"]
+shader = ExtResource("1_cahws")
+shader_parameter/flash_color = Color(1, 0, 0, 1)
+shader_parameter/flash_amount = 0.505
 
 [sub_resource type="Animation" id="Animation_38nsa"]
 length = 0.001
@@ -89,6 +95,7 @@ _data = {
 }
 
 [node name="Goblin" type="Node2D"]
+material = SubResource("ShaderMaterial_ainwk")
 
 [node name="Body" type="Sprite2D" parent="."]
 texture = ExtResource("1_g784o")
