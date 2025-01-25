@@ -96,6 +96,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_mnw45")
 
+[node name="SpellCooldown" type="Timer" parent="CanvasLayer/SpellPanel"]
+wait_time = 2.0
+
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel"]
 layout_mode = 0
 offset_right = 288.0
@@ -152,6 +155,7 @@ size_flags_vertical = 4
 spell_color = 1
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/HBoxContainer/Blue"]
+layout_mode = 0
 offset_right = 100.0
 offset_bottom = 100.0
 pivot_offset = Vector2(50, 50)
@@ -165,6 +169,7 @@ size_flags_vertical = 4
 spell_color = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/HBoxContainer/Green"]
+layout_mode = 0
 offset_right = 100.0
 offset_bottom = 100.0
 pivot_offset = Vector2(50, 50)
@@ -178,6 +183,7 @@ size_flags_vertical = 4
 spell_color = 3
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/HBoxContainer/Yellow"]
+layout_mode = 0
 offset_right = 100.0
 offset_bottom = 100.0
 pivot_offset = Vector2(50, 50)
