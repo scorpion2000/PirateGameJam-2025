@@ -37,9 +37,9 @@ func _removeFirstEmpty():
 	var move = false
 	var i = 0
 	var pos : int = 0
-	print(str(enemies.size()))
+	#print(str(enemies.size()))
 	for sprite in enemies:
-		print(str(i))
+		#print(str(i))
 		if !move && sprite.monsterType == Enemy.MonsterType.EMPTY:
 			move = true
 			pos = i
