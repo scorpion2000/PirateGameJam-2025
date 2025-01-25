@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3jlll0lpqj83"]
+[gd_scene load_steps=16 format=3 uid="uid://d3jlll0lpqj83"]
 
 [ext_resource type="Script" path="res://Main/spell_test.gd" id="1_cwvrp"]
 [ext_resource type="Texture2D" uid="uid://o4sog6c85b7o" path="res://Environment/Backgrounds/trees.png" id="2_2kbxk"]
@@ -9,9 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://4je1tc6khmer" path="res://UI/SpellCastingUI/blue_gem.tres" id="3_vnb7f"]
 [ext_resource type="Texture2D" uid="uid://bbep5mcf7b8g8" path="res://UI/SpellCastingUI/green_gem.tres" id="4_ed341"]
 [ext_resource type="Texture2D" uid="uid://b0l35m8anfghp" path="res://UI/SpellCastingUI/yellow_gem.tres" id="5_alpjs"]
+[ext_resource type="Texture2D" uid="uid://dotqa0lprd0k2" path="res://Scripts/UI/bottom_panel.png" id="6_rsk1q"]
 [ext_resource type="PackedScene" uid="uid://cicwwp7spnimn" path="res://Entities/Wizard/wizard.tscn" id="8_nlg1d"]
 [ext_resource type="Script" path="res://Entities/Wizard/wizard_speech_panel.gd" id="10_pfvie"]
 [ext_resource type="PackedScene" uid="uid://3jawxaqfumoj" path="res://Scripts/Spells/SpellBook/spell_book.tscn" id="12_8rvb5"]
+[ext_resource type="Texture2D" uid="uid://b85h06v8c67r6" path="res://Scripts/UI/book_icon.png" id="13_3ewc8"]
+[ext_resource type="PackedScene" uid="uid://c7g372cjotvp5" path="res://Prefabs/enemy_cycler.tscn" id="15_mh5mx"]
 
 [node name="SpellTest" type="Node2D"]
 script = ExtResource("1_cwvrp")
@@ -37,6 +40,10 @@ region_rect = Rect2(0, 64, 288, 64)
 unique_name_in_owner = true
 position = Vector2(-90, 0)
 
+[node name="EnemyCycler" parent="." instance=ExtResource("15_mh5mx")]
+position = Vector2(-53, 0)
+maxMonsters = 4
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="SpellPanel" type="Panel" parent="CanvasLayer"]
@@ -48,6 +55,13 @@ offset_top = 26.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_mnw45")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel"]
+layout_mode = 0
+offset_right = 288.0
+offset_bottom = 74.0
+scale = Vector2(4, 4)
+texture = ExtResource("6_rsk1q")
 
 [node name="CastButton" type="Button" parent="CanvasLayer/SpellPanel"]
 layout_mode = 2
@@ -61,22 +75,6 @@ offset_right = 0.0159912
 offset_bottom = -15.0
 text = "CAST"
 metadata/row = 2
-metadata/column = 2
-
-[node name="CastWord" type="Label" parent="CanvasLayer/SpellPanel"]
-unique_name_in_owner = true
-layout_mode = 2
-anchor_left = 0.408
-anchor_top = 0.046
-anchor_right = 0.592
-anchor_bottom = 0.145
-offset_left = -0.0160217
-offset_top = 0.0959988
-offset_right = 0.0159912
-offset_bottom = 0.0199966
-text = "Abra - Kadabra"
-horizontal_alignment = 1
-metadata/row = 0
 metadata/column = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SpellPanel"]
@@ -138,12 +136,30 @@ bbcode_enabled = true
 text = "[center][wave amp=5.0 freq=0.5 connected=0]{text}[/wave][/center]"
 
 [node name="OpenSpellBook" type="Button" parent="CanvasLayer/SpellPanel"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 36.0
-offset_top = 100.0
-offset_right = 121.0
-offset_bottom = 189.0
+offset_left = 31.0
+offset_top = 81.0
+offset_right = 124.0
+offset_bottom = 208.0
 text = "SpellBook"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/OpenSpellBook"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.5
+offset_top = -12.5
+offset_right = 11.5
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(12, 16)
+texture = ExtResource("13_3ewc8")
 
 [node name="SpellBook" parent="CanvasLayer" instance=ExtResource("12_8rvb5")]
 offset_top = 352.0
