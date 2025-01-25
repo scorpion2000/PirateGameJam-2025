@@ -363,6 +363,3 @@ libraries = {
 "": SubResource("AnimationLibrary_7j4mc")
 }
 autoplay = "idle"
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
