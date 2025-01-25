@@ -1,6 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cicwwp7spnimn"]
+[gd_scene load_steps=11 format=3 uid="uid://cicwwp7spnimn"]
 
+[ext_resource type="Shader" path="res://Entities/Wizard/damage.gdshader" id="1_7ghbd"]
 [ext_resource type="Texture2D" uid="uid://ccuvd0w87e1lb" path="res://Entities/Wizard/wizard.png" id="1_v64wd"]
+[ext_resource type="Script" path="res://Entities/Wizard/wizard.gd" id="2_et5vu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ohku3"]
+shader = ExtResource("1_7ghbd")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_amount = 0.0
 
 [sub_resource type="Animation" id="Animation_8w4nv"]
 length = 0.001
@@ -333,14 +340,18 @@ _data = {
 }
 
 [node name="Wizard" type="Node2D"]
+material = SubResource("ShaderMaterial_ohku3")
+script = ExtResource("2_et5vu")
 
 [node name="Body" type="Sprite2D" parent="."]
+use_parent_material = true
 texture = ExtResource("1_v64wd")
 offset = Vector2(0, -12.5)
 region_enabled = true
 region_rect = Rect2(6, 7, 19, 25)
 
 [node name="Wand" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(13, -10)
 texture = ExtResource("1_v64wd")
 offset = Vector2(-0.5, -3.5)
@@ -352,3 +363,6 @@ libraries = {
 "": SubResource("AnimationLibrary_7j4mc")
 }
 autoplay = "idle"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)

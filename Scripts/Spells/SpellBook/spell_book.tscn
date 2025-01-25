@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://3jawxaqfumoj"]
+
+[ext_resource type="Texture2D" uid="uid://bbbpkrojfvemv" path="res://Scripts/Spells/SpellBook/book.png" id="1_scu57"]
+[ext_resource type="Script" path="res://Scripts/Spells/SpellBook/spell_book.gd" id="2_k3mqr"]
+
+[node name="SpellBook" type="TextureRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -328.0
+offset_top = -209.0
+offset_right = 328.0
+offset_bottom = 319.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(328, 264)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_scu57")
+script = ExtResource("2_k3mqr")
+
+[node name="SpellGuide" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 308.0
+offset_bottom = 504.0
+
+[node name="CloseButton" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 552.0
+offset_right = 605.0
+offset_bottom = 76.0
+
+[connection signal="button_down" from="CloseButton" to="." method="_on_close_button_down"]

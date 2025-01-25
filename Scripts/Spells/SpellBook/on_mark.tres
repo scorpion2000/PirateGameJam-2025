@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cs204hw3dwyuw"]
+
+[ext_resource type="Texture2D" uid="uid://csq5vbgcckpm" path="res://Scripts/Spells/SpellBook/spell_condition.png" id="1_thxjb"]
+
+[resource]
+atlas = ExtResource("1_thxjb")
+region = Rect2(8, 9, 9, 9)

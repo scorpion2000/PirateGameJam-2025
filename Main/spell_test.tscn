@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3jlll0lpqj83"]
+[gd_scene load_steps=13 format=3 uid="uid://d3jlll0lpqj83"]
 
 [ext_resource type="Script" path="res://Main/spell_test.gd" id="1_cwvrp"]
 [ext_resource type="Texture2D" uid="uid://o4sog6c85b7o" path="res://Environment/Backgrounds/trees.png" id="2_2kbxk"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b0l35m8anfghp" path="res://UI/SpellCastingUI/yellow_gem.tres" id="5_alpjs"]
 [ext_resource type="PackedScene" uid="uid://cicwwp7spnimn" path="res://Entities/Wizard/wizard.tscn" id="8_nlg1d"]
 [ext_resource type="Script" path="res://Entities/Wizard/wizard_speech_panel.gd" id="10_pfvie"]
+[ext_resource type="PackedScene" uid="uid://3jawxaqfumoj" path="res://Scripts/Spells/SpellBook/spell_book.tscn" id="12_8rvb5"]
 
 [node name="SpellTest" type="Node2D"]
 script = ExtResource("1_cwvrp")
@@ -21,13 +22,13 @@ zoom = Vector2(4, 4)
 [node name="Background" type="Node2D" parent="."]
 
 [node name="Back" type="Sprite2D" parent="Background"]
-position = Vector2(0, -44)
+position = Vector2(0, -42)
 texture = ExtResource("2_2kbxk")
 region_enabled = true
 region_rect = Rect2(0, 0, 288, 78)
 
 [node name="Ground" type="Sprite2D" parent="Background"]
-position = Vector2(0, -7)
+position = Vector2(0, -4)
 texture = ExtResource("2_l3aid")
 region_enabled = true
 region_rect = Rect2(0, 64, 288, 64)
@@ -136,4 +137,17 @@ layout_mode = 2
 bbcode_enabled = true
 text = "[center][wave amp=5.0 freq=0.5 connected=0]{text}[/wave][/center]"
 
+[node name="OpenSpellBook" type="Button" parent="CanvasLayer/SpellPanel"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 100.0
+offset_right = 121.0
+offset_bottom = 189.0
+text = "SpellBook"
+
+[node name="SpellBook" parent="CanvasLayer" instance=ExtResource("12_8rvb5")]
+offset_top = 352.0
+offset_bottom = 880.0
+
 [connection signal="button_down" from="CanvasLayer/SpellPanel/CastButton" to="CanvasLayer/SpellPanel" method="_on_cast_button_down"]
+[connection signal="button_down" from="CanvasLayer/SpellPanel/OpenSpellBook" to="CanvasLayer/SpellPanel" method="_on_open_spell_book_button_down"]

@@ -11,3 +11,6 @@ func _endOfTurn(correctSpell : bool):
 		player._addDamage(enemyCycler._getFirstDamage())
 	enemyCycler._cycle(correctSpell)
 	player._handleTurnDamage()
+
+func _onCastResult(result: bool) -> void:
+	_endOfTurn(result)

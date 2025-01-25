@@ -9,6 +9,8 @@ var spell_size: int = 2
 # Holds all spells that could be added to the player's inventory, to avoid duplicate words
 var spell_pool: Array[Spell]
 
+var spell_book: SpellBook = null
+
 
 func _ready() -> void:
 	spell_pool = GlobalSpells.spells.duplicate()
