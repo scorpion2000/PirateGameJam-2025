@@ -5,7 +5,7 @@ class_name UIEnemyCycle
 @export var monsterGenerator : EnemyGenerator
 @export var maxMonsters : int = 7
 
-var imageWidth = 120
+var imageWidth = 40
 var enemies : Array[Enemy]
 var DEBUG = false
 
@@ -36,15 +36,19 @@ func _removeFirstEmpty():
 	print("removing first empty enemy")
 	var move = false
 	var i = 0
+	var pos : int = 0
+	print(str(enemies.size()))
 	for sprite in enemies:
+		print(str(i))
 		if !move && sprite.monsterType == Enemy.MonsterType.EMPTY:
 			move = true
-			enemies.remove_at(i)
-			sprite.queue_free()
-			print("removed emtpy enemy at " + str(i))
+			pos = i
+			#print("removed emtpy enemy at " + str(i))
 		if move:
-			_moveSprite(i, sprite)
+			_moveSprite(i - 1, sprite)
 		i += 1
+	enemies[pos].queue_free()
+	enemies.remove_at(pos)
 	_monsterRequest()
 
 func _monsterRequest():
@@ -56,7 +60,7 @@ func _monsterRequest():
 			_addEnemy(_enemy)
 
 func _moveSprite(i : int, sprite : Enemy):
-	print("Moving sprite at " + str(i) + " ; " + str(Enemy.MonsterType.keys()[sprite.monsterType]))
+	#print("Moving sprite at " + str(i) + " ; " + str(Enemy.MonsterType.keys()[sprite.monsterType]))
 	var nextPos : Vector2 = Vector2(imageWidth * i, 0)
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
