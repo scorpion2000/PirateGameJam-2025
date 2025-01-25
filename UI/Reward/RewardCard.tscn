@@ -1,0 +1,122 @@
+[gd_scene load_steps=15 format=3 uid="uid://dvayskrsmhpmp"]
+
+[ext_resource type="Script" path="res://UI/Reward/reward_card.gd" id="1_7vrts"]
+[ext_resource type="Texture2D" uid="uid://bjtsifu47x7cd" path="res://UI/Reward/blank.png" id="1_hdkqq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bwyoo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3uxjp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36s6b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpxor"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jtjwo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mf22d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxroh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yndqm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_angor"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfm3y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s568d"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_t6kcn"]
+
+[node name="Card" type="Button"]
+anchors_preset = -1
+anchor_right = 0.147
+anchor_bottom = 0.323
+offset_right = 0.656006
+offset_bottom = 0.695984
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxFlat_bwyoo")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_3uxjp")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_36s6b")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_xpxor")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_jtjwo")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_mf22d")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yxroh")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_yndqm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_angor")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_hfm3y")
+theme_override_styles/normal = SubResource("StyleBoxFlat_s568d")
+script = ExtResource("1_7vrts")
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_t6kcn")
+
+[node name="Container" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Control" type="Control" parent="Container"]
+layout_mode = 2
+
+[node name="Type" type="Label" parent="Container/Control"]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "New Spell:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="Container/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Boo-Kadabra"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Container/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.2
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_hdkqq")
+expand_mode = 1

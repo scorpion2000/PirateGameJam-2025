@@ -1,0 +1,256 @@
+[gd_scene load_steps=24 format=3 uid="uid://dmprkw8eam8fu"]
+
+[ext_resource type="Script" path="res://Main/spell_test.gd" id="1_cpcuv"]
+[ext_resource type="Texture2D" uid="uid://o4sog6c85b7o" path="res://Environment/Backgrounds/trees.png" id="2_pa335"]
+[ext_resource type="Texture2D" uid="uid://bb3j6qardd47i" path="res://Environment/Backgrounds/floor.png" id="3_im3pk"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="4_c6554"]
+[ext_resource type="PackedScene" uid="uid://cicwwp7spnimn" path="res://Entities/Wizard/wizard.tscn" id="5_qitk4"]
+[ext_resource type="PackedScene" uid="uid://c7g372cjotvp5" path="res://Prefabs/enemy_cycler.tscn" id="6_66ef1"]
+[ext_resource type="Script" path="res://Scripts/turn_handler.gd" id="7_1nxe8"]
+[ext_resource type="Script" path="res://Scripts/enemy_generator.gd" id="8_e77py"]
+[ext_resource type="PackedScene" uid="uid://7254c44kr7o6" path="res://Prefabs/empty_enemy.tscn" id="9_seyyu"]
+[ext_resource type="PackedScene" uid="uid://cct3m3hxs41ul" path="res://Prefabs/goblin_enemy.tscn" id="10_foqur"]
+[ext_resource type="Script" path="res://Scripts/Spells/spell_manager.gd" id="11_rt4s3"]
+[ext_resource type="Texture2D" uid="uid://dotqa0lprd0k2" path="res://Scripts/UI/bottom_panel.png" id="12_6afpg"]
+[ext_resource type="PackedScene" uid="uid://bhqlk8ee611vw" path="res://UI/SpellCastingUI/gem_button.tscn" id="13_4s07b"]
+[ext_resource type="Texture2D" uid="uid://cg2ua61r8grt0" path="res://UI/SpellCastingUI/red_gem.tres" id="14_ry1ro"]
+[ext_resource type="Texture2D" uid="uid://4je1tc6khmer" path="res://UI/SpellCastingUI/blue_gem.tres" id="15_wuo5i"]
+[ext_resource type="Texture2D" uid="uid://bbep5mcf7b8g8" path="res://UI/SpellCastingUI/green_gem.tres" id="16_6guss"]
+[ext_resource type="Texture2D" uid="uid://b0l35m8anfghp" path="res://UI/SpellCastingUI/yellow_gem.tres" id="17_hkhl4"]
+[ext_resource type="Texture2D" uid="uid://cx24ccyd5k0xl" path="res://Scripts/UI/SpeechBubble/speech_bubble.png" id="18_66pcc"]
+[ext_resource type="Script" path="res://Entities/Wizard/wizard_speech_panel.gd" id="19_stbkm"]
+[ext_resource type="Texture2D" uid="uid://b85h06v8c67r6" path="res://Scripts/UI/book_icon.png" id="20_40lkb"]
+[ext_resource type="PackedScene" uid="uid://3jawxaqfumoj" path="res://Scripts/Spells/SpellBook/spell_book.tscn" id="21_a7q1k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dffhf"]
+atlas = ExtResource("18_66pcc")
+region = Rect2(4, 1, 72, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mrha"]
+atlas = ExtResource("18_66pcc")
+region = Rect2(32, 32, 16, 16)
+
+[node name="SpellTest" type="Node2D"]
+script = ExtResource("1_cpcuv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Back" type="Sprite2D" parent="Background"]
+position = Vector2(0, -42)
+texture = ExtResource("2_pa335")
+region_enabled = true
+region_rect = Rect2(0, 0, 288, 78)
+
+[node name="Ground" type="Sprite2D" parent="Background"]
+position = Vector2(0, -4)
+texture = ExtResource("3_im3pk")
+region_enabled = true
+region_rect = Rect2(0, 64, 288, 64)
+
+[node name="Player" type="Node" parent="."]
+script = ExtResource("4_c6554")
+health = 100
+
+[node name="Wizard" parent="Player" instance=ExtResource("5_qitk4")]
+unique_name_in_owner = true
+position = Vector2(-90, 0)
+
+[node name="HealthLabel" type="Label" parent="Player"]
+offset_left = -96.0
+offset_right = -56.0
+offset_bottom = 23.0
+scale = Vector2(0.3, 0.3)
+text = "0"
+horizontal_alignment = 1
+
+[node name="EnemyCycler" parent="." node_paths=PackedStringArray("monsterGenerator") instance=ExtResource("6_66ef1")]
+unique_name_in_owner = true
+position = Vector2(-51, 0)
+monsterGenerator = NodePath("../EnemyGenerator")
+maxMonsters = 4
+
+[node name="TurnHandler" type="Node" parent="." node_paths=PackedStringArray("enemyCycler", "player")]
+unique_name_in_owner = true
+script = ExtResource("7_1nxe8")
+enemyCycler = NodePath("../EnemyCycler")
+player = NodePath("../Player")
+
+[node name="EnemyGenerator" type="Node" parent="."]
+script = ExtResource("8_e77py")
+emptyEnemy = ExtResource("9_seyyu")
+enemies = Array[PackedScene]([ExtResource("10_foqur")])
+bosses = Array[PackedScene]([ExtResource("10_foqur")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SpellPanel" type="Panel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_rt4s3")
+
+[node name="SpellCooldown" type="Timer" parent="CanvasLayer/SpellPanel"]
+wait_time = 2.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel"]
+layout_mode = 0
+offset_right = 288.0
+offset_bottom = 74.0
+scale = Vector2(4, 4)
+texture = ExtResource("12_6afpg")
+
+[node name="CastButton" type="Button" parent="CanvasLayer/SpellPanel"]
+layout_mode = 2
+anchor_left = 0.408
+anchor_top = 0.818
+anchor_right = 0.592
+anchor_bottom = 1.0
+offset_left = -0.0160217
+offset_top = -0.0320129
+offset_right = 0.0159912
+offset_bottom = -15.0
+text = "CAST"
+metadata/row = 2
+metadata/column = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SpellPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -50.0
+offset_right = 206.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Red" parent="CanvasLayer/SpellPanel/HBoxContainer" instance=ExtResource("13_4s07b")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/HBoxContainer/Red"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("14_ry1ro")
+
+[node name="Blue" parent="CanvasLayer/SpellPanel/HBoxContainer" instance=ExtResource("13_4s07b")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+spell_color = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/HBoxContainer/Blue"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("15_wuo5i")
+
+[node name="Green" parent="CanvasLayer/SpellPanel/HBoxContainer" instance=ExtResource("13_4s07b")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+spell_color = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/HBoxContainer/Green"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("16_6guss")
+
+[node name="Yellow" parent="CanvasLayer/SpellPanel/HBoxContainer" instance=ExtResource("13_4s07b")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+spell_color = 3
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/HBoxContainer/Yellow"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+pivot_offset = Vector2(50, 50)
+texture = ExtResource("17_hkhl4")
+
+[node name="WizardSpeechPanel" type="TextureRect" parent="CanvasLayer/SpellPanel"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = -229.0
+offset_right = 354.0
+offset_bottom = -145.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_dffhf")
+script = ExtResource("19_stbkm")
+
+[node name="Speech" type="Label" parent="CanvasLayer/SpellPanel/WizardSpeechPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "qwerty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/WizardSpeechPanel"]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 87.0
+offset_right = 260.0
+offset_bottom = 127.0
+texture = SubResource("AtlasTexture_4mrha")
+
+[node name="OpenSpellBook" type="Button" parent="CanvasLayer/SpellPanel"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 31.0
+offset_top = 81.0
+offset_right = 124.0
+offset_bottom = 208.0
+text = "SpellBook"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/OpenSpellBook"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -13.5
+offset_top = -12.5
+offset_right = 11.5
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(12, 16)
+texture = ExtResource("20_40lkb")
+
+[node name="SpellBook" parent="CanvasLayer" instance=ExtResource("21_a7q1k")]
+offset_top = 352.0
+offset_bottom = 880.0
+
+[connection signal="button_down" from="CanvasLayer/SpellPanel/CastButton" to="CanvasLayer/SpellPanel" method="_on_cast_button_down"]
+[connection signal="button_down" from="CanvasLayer/SpellPanel/OpenSpellBook" to="CanvasLayer/SpellPanel" method="_on_open_spell_book_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/SpellPanel/OpenSpellBook" to="CanvasLayer/SpellPanel" method="_on_hover_book" binds= [true]]
+[connection signal="mouse_exited" from="CanvasLayer/SpellPanel/OpenSpellBook" to="CanvasLayer/SpellPanel" method="_on_hover_book" binds= [false]]

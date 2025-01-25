@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy5nwhp2fshpw"]
+
+[ext_resource type="Script" path="res://UI/Reward/reward_ui.gd" id="1_0nn8x"]
+[ext_resource type="PackedScene" uid="uid://dvayskrsmhpmp" path="res://UI/Reward/RewardCard.tscn" id="2_sv8xe"]
+
+[node name="RewardUI" type="Panel"]
+anchors_preset = -1
+anchor_right = 0.557
+anchor_bottom = 0.437
+offset_right = 0.335938
+offset_bottom = -0.175995
+script = ExtResource("1_0nn8x")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.333
+anchor_right = 0.667
+anchor_bottom = 0.063
+offset_left = 7.419
+offset_right = -7.41902
+offset_bottom = -0.0580006
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Pick a Card"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 2
+anchor_top = 0.134
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.0779991
+
+[node name="Card1" parent="MarginContainer/Control/HBoxContainer" instance=ExtResource("2_sv8xe")]
+layout_mode = 2
+
+[node name="Card2" parent="MarginContainer/Control/HBoxContainer" instance=ExtResource("2_sv8xe")]
+layout_mode = 2
+
+[node name="Card3" parent="MarginContainer/Control/HBoxContainer" instance=ExtResource("2_sv8xe")]
+layout_mode = 2
+
+[connection signal="card_pressed" from="MarginContainer/Control/HBoxContainer/Card1" to="." method="_on_card_pressed"]
+[connection signal="card_pressed" from="MarginContainer/Control/HBoxContainer/Card2" to="." method="_on_card_pressed"]
+[connection signal="card_pressed" from="MarginContainer/Control/HBoxContainer/Card3" to="." method="_on_card_pressed"]
