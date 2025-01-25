@@ -14,13 +14,17 @@ enum MonsterType {GOBLIN, EMPTY}
 @export var chargedDamagePoints : int = -1
 ## Bosses drop stuff
 @export var boss : bool = false
+@export var defaultHealth : int = 1
 
+var health : int = 0
 var damage : DamageType = DamageType.new()
 
 @onready var damageValueText : Label = self.get_node("Info Panel").get_node("Damage Value")
 @onready var damageTypeText : Label = self.get_node("Info Panel").get_node("Damage Type")
+@onready var healthText : Label = self.get_node("Control").get_node("Health")
 
 func _ready():
+	health = defaultHealth
 	damage.hitPoint = damagePoints
 	if (damageType != DamageType.Type.DEFAULT):
 		damage.type = damageType
@@ -35,7 +39,12 @@ func _ready():
 func _updateDisplay():
 	damageValueText.text = str(damage.hitPoint)
 	damageTypeText.text = DamageType.Type.keys()[damage.type]
+	healthText.text = str(health)
 
 func _damageOverride(newDamage: int):
 	damage.hitPoint = newDamage
+	_updateDisplay()
+
+func _takeDamage(damageTaken : int):
+	health -= damageTaken
 	_updateDisplay()

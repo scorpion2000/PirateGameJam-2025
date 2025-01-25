@@ -14,7 +14,7 @@ enemyCycler = NodePath("EnemyCycler")
 player = NodePath("Player")
 
 [node name="EnemyCycler" parent="." node_paths=PackedStringArray("monsterGenerator") instance=ExtResource("1_ryuv7")]
-position = Vector2(202, 157)
+position = Vector2(91, 166)
 monsterGenerator = NodePath("../EnemyGenerator")
 
 [node name="Player" type="Node" parent="."]
@@ -23,7 +23,6 @@ health = 100
 
 [node name="Wizard" parent="Player" instance=ExtResource("3_xyost")]
 position = Vector2(57, 164)
-scale = Vector2(4, 4)
 
 [node name="HealthLabel" type="Label" parent="Player"]
 offset_left = 44.0
@@ -33,23 +32,24 @@ offset_bottom = 200.0
 text = "0"
 
 [node name="DEBUG SUCCESS" type="Button" parent="."]
-offset_left = 327.0
-offset_top = 452.0
-offset_right = 520.0
-offset_bottom = 483.0
+offset_left = -162.0
+offset_top = 214.0
+offset_right = 31.0
+offset_bottom = 245.0
 text = "SUCCESSFUL SPELLCAST"
 
 [node name="DEBUG FAILURE" type="Button" parent="."]
-offset_left = 327.0
-offset_top = 493.0
-offset_right = 520.0
-offset_bottom = 524.0
+offset_left = 68.0
+offset_top = 213.0
+offset_right = 261.0
+offset_bottom = 244.0
 text = "FAILED SPELLCAST"
 
 [node name="EnemyGenerator" type="Node" parent="."]
 script = ExtResource("5_lkqxs")
-enemies = Array[PackedScene]([ExtResource("6_cyhix"), ExtResource("7_5kauf")])
+emptyEnemy = ExtResource("7_5kauf")
+enemies = Array[PackedScene]([ExtResource("6_cyhix")])
 bosses = Array[PackedScene]([ExtResource("6_cyhix")])
 
-[connection signal="pressed" from="DEBUG SUCCESS" to="." method="_endOfTurn" binds= [true]]
+[connection signal="pressed" from="DEBUG SUCCESS" to="." method="_endOfTurn" binds= [true, 10]]
 [connection signal="pressed" from="DEBUG FAILURE" to="." method="_endOfTurn" binds= [false]]

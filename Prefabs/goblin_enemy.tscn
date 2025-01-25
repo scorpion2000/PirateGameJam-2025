@@ -7,8 +7,35 @@
 script = ExtResource("1_sq6p1")
 damageType = 1
 damagePoints = 5
+defaultHealth = 5
 
 [node name="Goblin" parent="." instance=ExtResource("1_7b7tn")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -50.0
+offset_top = -40.0
+offset_right = 50.0
+offset_bottom = -24.0
+
+[node name="Health" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -7.0
+offset_right = 3.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 10
+text = "0"
+horizontal_alignment = 1
 
 [node name="Info Panel" type="HBoxContainer" parent="."]
 offset_left = -18.0

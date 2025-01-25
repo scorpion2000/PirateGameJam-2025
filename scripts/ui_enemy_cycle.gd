@@ -21,8 +21,8 @@ func _cycle(removeFirst : bool):
 	if !removeFirst:
 		_removeFirstEmpty()
 		return
-	var _first = enemies[0]
-	enemies.remove_at(0)
+	var _first = _getFirstNoneEmpty()
+	enemies.erase(_first)
 	_first.queue_free()
 	var i = 0;
 	for sprite in enemies:
@@ -57,7 +57,7 @@ func _monsterRequest():
 	if monsterGenerator == null:
 		return
 	if maxMonsters - enemies.size() > 0:
-		var _newMonsters : Array[Enemy] = monsterGenerator._generatePatternless(maxMonsters - enemies.size())
+		var _newMonsters : Array[Enemy] = monsterGenerator._generatePatternless(maxMonsters - enemies.size(), maxMonsters - _emptyEnemyCount() == 1)
 		for _enemy in _newMonsters:
 			_addEnemy(_enemy)
 
@@ -93,3 +93,16 @@ func _addEnemy(enemy: Enemy):
 	add_child(enemy)
 	enemy.position = Vector2(imageWidth * enemies.size(), 0)
 	enemies.push_back(enemy)
+
+func _getFirstNoneEmpty() -> Enemy:
+	for enemy in enemies:
+		if enemy.monsterType != Enemy.MonsterType.EMPTY:
+			return enemy
+	return null
+
+func _emptyEnemyCount() -> int:
+	var i = 0
+	for enemy in enemies:
+		if enemy.monsterType == Enemy.MonsterType.EMPTY:
+			i += 1
+	return i
