@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3jlll0lpqj83"]
+[gd_scene load_steps=16 format=3 uid="uid://d3jlll0lpqj83"]
 
 [ext_resource type="Script" path="res://Main/spell_test.gd" id="1_cwvrp"]
 [ext_resource type="Texture2D" uid="uid://o4sog6c85b7o" path="res://Environment/Backgrounds/trees.png" id="2_2kbxk"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Entities/Wizard/wizard_speech_panel.gd" id="10_pfvie"]
 [ext_resource type="PackedScene" uid="uid://3jawxaqfumoj" path="res://Scripts/Spells/SpellBook/spell_book.tscn" id="12_8rvb5"]
 [ext_resource type="Texture2D" uid="uid://b85h06v8c67r6" path="res://Scripts/UI/book_icon.png" id="13_3ewc8"]
+[ext_resource type="PackedScene" uid="uid://c7g372cjotvp5" path="res://Prefabs/enemy_cycler.tscn" id="15_mh5mx"]
 
 [node name="SpellTest" type="Node2D"]
 script = ExtResource("1_cwvrp")
@@ -38,6 +39,10 @@ region_rect = Rect2(0, 64, 288, 64)
 [node name="Wizard" parent="." instance=ExtResource("8_nlg1d")]
 unique_name_in_owner = true
 position = Vector2(-90, 0)
+
+[node name="EnemyCycler" parent="." instance=ExtResource("15_mh5mx")]
+position = Vector2(-53, 0)
+maxMonsters = 4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

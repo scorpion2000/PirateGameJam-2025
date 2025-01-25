@@ -50,5 +50,5 @@ func speak(text: String):
 func _on_open_spell_book_button_down() -> void:
 	PlayerData.spell_book.set_open()
 	var tween = create_tween()
-	tween.tween_property($OpenSpellBook/TextureRect, "rotation_degrees", 10.0, 0.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property($OpenSpellBook/TextureRect, "rotation_degrees", 10.0, 0.1).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_ELASTIC)
 	tween.tween_property($OpenSpellBook/TextureRect, "rotation_degrees", 0.0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
