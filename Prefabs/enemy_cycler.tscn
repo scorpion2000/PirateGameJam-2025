@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7g372cjotvp5"]
 
-[ext_resource type="Script" path="res://scripts/ui_enemy_cycle.gd" id="1_d11ud"]
+[ext_resource type="Script" path="res://Scripts/ui_enemy_cycle.gd" id="1_d11ud"]
 [ext_resource type="PackedScene" uid="uid://cct3m3hxs41ul" path="res://Prefabs/goblin_enemy.tscn" id="2_nc8xd"]
 
 [node name="EnemyCycler" type="Node2D"]
@@ -8,16 +8,23 @@ script = ExtResource("1_d11ud")
 emptyImage = ExtResource("2_nc8xd")
 
 [node name="DEBUG CYCLE" type="Button" parent="."]
-offset_top = 295.0
-offset_right = 56.0
-offset_bottom = 326.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "CYCLE"
 
 [node name="DEBUG FILL" type="Button" parent="."]
-offset_left = 68.0
-offset_top = 295.0
-offset_right = 107.0
-offset_bottom = 326.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -16.0
+offset_right = 71.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "FILL"
 
 [connection signal="pressed" from="DEBUG CYCLE" to="." method="_cycle"]

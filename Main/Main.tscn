@@ -1,0 +1,185 @@
+[gd_scene load_steps=15 format=3 uid="uid://bul4as0apye4t"]
+
+[ext_resource type="Script" path="res://Scripts/turn_handler.gd" id="1_jrsyn"]
+[ext_resource type="Texture2D" uid="uid://o4sog6c85b7o" path="res://Environment/Backgrounds/trees.png" id="2_m0q2a"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="3_k1bxs"]
+[ext_resource type="Texture2D" uid="uid://bb3j6qardd47i" path="res://Environment/Backgrounds/floor.png" id="3_nxp8m"]
+[ext_resource type="PackedScene" uid="uid://cicwwp7spnimn" path="res://Entities/Wizard/wizard.tscn" id="4_8616j"]
+[ext_resource type="Script" path="res://Scripts/ui_enemy_cycle.gd" id="4_owhns"]
+[ext_resource type="PackedScene" uid="uid://cct3m3hxs41ul" path="res://Prefabs/goblin_enemy.tscn" id="5_drywa"]
+[ext_resource type="Script" path="res://Scripts/Spells/spell_manager.gd" id="7_aij4k"]
+[ext_resource type="PackedScene" uid="uid://bhqlk8ee611vw" path="res://UI/SpellCastingUI/gem_button.tscn" id="8_7bfkv"]
+[ext_resource type="Texture2D" uid="uid://cg2ua61r8grt0" path="res://UI/SpellCastingUI/red_gem.tres" id="9_sayxq"]
+[ext_resource type="Texture2D" uid="uid://4je1tc6khmer" path="res://UI/SpellCastingUI/blue_gem.tres" id="10_rbnjd"]
+[ext_resource type="Texture2D" uid="uid://bbep5mcf7b8g8" path="res://UI/SpellCastingUI/green_gem.tres" id="11_v6e5i"]
+[ext_resource type="Texture2D" uid="uid://b0l35m8anfghp" path="res://UI/SpellCastingUI/yellow_gem.tres" id="12_q4kvn"]
+[ext_resource type="Script" path="res://Entities/Wizard/wizard_speech_panel.gd" id="13_2rlid"]
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("enemyCycler", "player")]
+script = ExtResource("1_jrsyn")
+enemyCycler = NodePath("EnemyCycler")
+player = NodePath("Player")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Back" type="Sprite2D" parent="Background"]
+position = Vector2(0, -44)
+texture = ExtResource("2_m0q2a")
+region_enabled = true
+region_rect = Rect2(0, 0, 288, 78)
+
+[node name="Ground" type="Sprite2D" parent="Background"]
+position = Vector2(0, -7)
+texture = ExtResource("3_nxp8m")
+region_enabled = true
+region_rect = Rect2(0, 64, 288, 64)
+
+[node name="EnemyCycler" type="Node2D" parent="."]
+script = ExtResource("4_owhns")
+emptyImage = ExtResource("5_drywa")
+
+[node name="DEBUG CYCLE" type="Button" parent="EnemyCycler"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -47.0
+offset_top = -78.0
+offset_right = -9.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "CYCLE"
+
+[node name="DEBUG FILL" type="Button" parent="EnemyCycler"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -77.0
+offset_right = 30.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "FILL"
+
+[node name="Player" type="Node" parent="."]
+script = ExtResource("3_k1bxs")
+
+[node name="Wizard" parent="Player" instance=ExtResource("4_8616j")]
+position = Vector2(-90, 0)
+
+[node name="HealthLabel" type="Label" parent="Player"]
+offset_left = 44.0
+offset_top = 177.0
+offset_right = 84.0
+offset_bottom = 200.0
+text = "0"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SpellPanel" type="Panel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_top = 0.668
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.135986
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_aij4k")
+
+[node name="CastButton" type="Button" parent="CanvasLayer/SpellPanel"]
+layout_mode = 2
+anchor_left = 0.408
+anchor_top = 0.818
+anchor_right = 0.592
+anchor_bottom = 1.0
+offset_left = -0.0160217
+offset_top = -0.0320129
+offset_right = 0.0159912
+offset_bottom = -15.0
+text = "CAST"
+metadata/row = 2
+metadata/column = 2
+
+[node name="CastWord" type="Label" parent="CanvasLayer/SpellPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+anchor_left = 0.408
+anchor_top = 0.046
+anchor_right = 0.592
+anchor_bottom = 0.145
+offset_left = -0.0160217
+offset_top = 0.0959988
+offset_right = 0.0159912
+offset_bottom = 0.0199966
+text = "Abra - Kadabra"
+horizontal_alignment = 1
+metadata/row = 0
+metadata/column = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SpellPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -50.0
+offset_right = 206.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Red" parent="CanvasLayer/SpellPanel/HBoxContainer" instance=ExtResource("8_7bfkv")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+icon = ExtResource("9_sayxq")
+
+[node name="Blue" parent="CanvasLayer/SpellPanel/HBoxContainer" instance=ExtResource("8_7bfkv")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+icon = ExtResource("10_rbnjd")
+spell_color = 1
+
+[node name="Green" parent="CanvasLayer/SpellPanel/HBoxContainer" instance=ExtResource("8_7bfkv")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+icon = ExtResource("11_v6e5i")
+spell_color = 2
+
+[node name="Yellow" parent="CanvasLayer/SpellPanel/HBoxContainer" instance=ExtResource("8_7bfkv")]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+icon = ExtResource("12_q4kvn")
+spell_color = 3
+
+[node name="WizardSpeechPanel" type="PanelContainer" parent="CanvasLayer/SpellPanel"]
+layout_mode = 0
+offset_left = 66.0
+offset_top = -214.0
+offset_right = 508.0
+offset_bottom = -151.0
+script = ExtResource("13_2rlid")
+
+[node name="Speech" type="RichTextLabel" parent="CanvasLayer/SpellPanel/WizardSpeechPanel"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center][wave amp=5.0 freq=0.5 connected=0]{text}[/wave][/center]"
+
+[connection signal="pressed" from="EnemyCycler/DEBUG CYCLE" to="EnemyCycler" method="_cycle"]
+[connection signal="pressed" from="EnemyCycler/DEBUG FILL" to="EnemyCycler" method="_DEBUG_fill_array"]
+[connection signal="button_down" from="CanvasLayer/SpellPanel/CastButton" to="CanvasLayer/SpellPanel" method="_on_cast_button_down"]
