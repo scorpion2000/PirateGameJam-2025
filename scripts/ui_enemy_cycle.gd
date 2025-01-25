@@ -47,6 +47,8 @@ func _removeFirstEmpty():
 		if move:
 			_moveSprite(i - 1, sprite)
 		i += 1
+	if !move:
+		return
 	enemies[pos].queue_free()
 	enemies.remove_at(pos)
 	_monsterRequest()
