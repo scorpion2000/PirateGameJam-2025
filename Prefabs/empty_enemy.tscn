@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://7254c44kr7o6"]
+
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_2x5d0"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_v65im"]
+width = 20
+height = 20
+
+[node name="EmptyEnemy" type="Node2D"]
+script = ExtResource("1_2x5d0")
+monsterType = 1
+damagePoints = 0
+
+[node name="Info Panel" type="HBoxContainer" parent="."]
+visible = false
+offset_left = -18.0
+offset_right = 19.0
+offset_bottom = 17.0
+
+[node name="Damage Value" type="Label" parent="Info Panel"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 10
+text = "2"
+
+[node name="Damage Type" type="Label" parent="Info Panel"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 10
+text = "Slash"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("NoiseTexture2D_v65im")

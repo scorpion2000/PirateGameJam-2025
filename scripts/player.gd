@@ -25,6 +25,8 @@ func _handleTurnDamage():
 	turnReady.emit()
 
 func _addDamage(newDamage : DamageType):
+	if newDamage == null:
+		return
 	damageBuffer.push_back(newDamage)
 
 #Insert fancy damage taking graphics here

@@ -3,7 +3,7 @@ class_name Enemy
 
 # This is a wrapper class.
 
-enum MonsterType {GOBLIN}
+enum MonsterType {GOBLIN, EMPTY}
 
 @export var monsterType : MonsterType = MonsterType.GOBLIN
 ## DEFAULT means the monster's predefined damage type is selected. [br]This allows us to alter a monster's default damage type
@@ -12,6 +12,8 @@ enum MonsterType {GOBLIN}
 @export var damagePoints : int = 1
 ## -1 is the default value. On default value, the charged damage is double the normal damage. You can set a custom value here
 @export var chargedDamagePoints : int = -1
+## Bosses drop stuff
+@export var boss : bool = false
 
 var damage : DamageType = DamageType.new()
 
@@ -28,6 +30,7 @@ func _ready():
 				damage.type = DamageType.Type.SLASH
 			_:
 				damage.type = DamageType.Type.SLASH
+	_updateDisplay()
 
 func _updateDisplay():
 	damageValueText.text = str(damage.hitPoint)

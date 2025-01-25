@@ -1,17 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnlmfv5qfr1fe"]
+[gd_scene load_steps=8 format=3 uid="uid://dnlmfv5qfr1fe"]
 
-[ext_resource type="Script" path="res://scripts/turn_handler.gd" id="1_4oc5e"]
+[ext_resource type="Script" path="res://Scripts/turn_handler.gd" id="1_4oc5e"]
 [ext_resource type="PackedScene" uid="uid://c7g372cjotvp5" path="res://Prefabs/enemy_cycler.tscn" id="1_ryuv7"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="3_iwhog"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="3_iwhog"]
 [ext_resource type="PackedScene" uid="uid://cicwwp7spnimn" path="res://Entities/Wizard/wizard.tscn" id="3_xyost"]
+[ext_resource type="Script" path="res://Scripts/enemy_generator.gd" id="5_lkqxs"]
+[ext_resource type="PackedScene" uid="uid://cct3m3hxs41ul" path="res://Prefabs/goblin_enemy.tscn" id="6_cyhix"]
+[ext_resource type="PackedScene" uid="uid://7254c44kr7o6" path="res://Prefabs/empty_enemy.tscn" id="7_5kauf"]
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("enemyCycler", "player")]
 script = ExtResource("1_4oc5e")
 enemyCycler = NodePath("EnemyCycler")
 player = NodePath("Player")
 
-[node name="EnemyCycler" parent="." instance=ExtResource("1_ryuv7")]
+[node name="EnemyCycler" parent="." node_paths=PackedStringArray("monsterGenerator") instance=ExtResource("1_ryuv7")]
 position = Vector2(202, 157)
+monsterGenerator = NodePath("../EnemyGenerator")
 
 [node name="Player" type="Node" parent="."]
 script = ExtResource("3_iwhog")
@@ -41,6 +45,11 @@ offset_top = 493.0
 offset_right = 520.0
 offset_bottom = 524.0
 text = "FAILED SPELLCAST"
+
+[node name="EnemyGenerator" type="Node" parent="."]
+script = ExtResource("5_lkqxs")
+enemies = Array[PackedScene]([ExtResource("6_cyhix"), ExtResource("7_5kauf")])
+bosses = Array[PackedScene]([ExtResource("6_cyhix")])
 
 [connection signal="pressed" from="DEBUG SUCCESS" to="." method="_endOfTurn" binds= [true]]
 [connection signal="pressed" from="DEBUG FAILURE" to="." method="_endOfTurn" binds= [false]]

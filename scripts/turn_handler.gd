@@ -7,7 +7,7 @@ class_name TurnHandler
 #TRUE if correct spell was cast
 #This function is used to call fancy functions
 func _endOfTurn(correctSpell : bool):
-	enemyCycler._cycle(correctSpell)
 	if !correctSpell:
 		player._addDamage(enemyCycler._getFirstDamage())
+	enemyCycler._cycle(correctSpell)
 	player._handleTurnDamage()
