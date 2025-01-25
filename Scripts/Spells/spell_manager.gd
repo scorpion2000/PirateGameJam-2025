@@ -2,6 +2,7 @@ extends Control
 
 class_name SpellManager
 
+signal cast_result(result : bool)
 # Holds the player's answer
 var current_result: Array[bool] = [false, false, false, false]
 
@@ -36,9 +37,10 @@ func cast_spell():
 func _on_cast_button_down() -> void:
 	if current_result == GlobalSpells.get_expected_result(current_spell):
 		speak("Success")
+		cast_result.emit(true)
 	else:
 		speak("Failure")
-		
+		cast_result.emit(false)
 
 
 func speak(text: String):
