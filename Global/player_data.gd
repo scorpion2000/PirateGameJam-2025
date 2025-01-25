@@ -29,7 +29,7 @@ func add_spell(index: int):
 
 
 func generate_spell():
-	var current_spells: Array[Spell] = spells
+	var current_spells: Array[Spell] = spells.duplicate()
 	var selected_spells: Array[Spell]
 	var max_size = spell_size
 	

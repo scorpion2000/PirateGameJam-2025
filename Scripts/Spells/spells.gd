@@ -63,3 +63,15 @@ func get_color_status(current_status, change):
 			result = !result
 	
 	return result
+
+
+func spell_to_string(input: Array[Spell]):
+	var text = ""
+	
+	for i in input.size():
+		
+		text += input[i].word
+		if i != input.size() - 1:
+			text += "-"
+	
+	return text
