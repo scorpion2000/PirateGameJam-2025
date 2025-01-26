@@ -20,6 +20,9 @@ var enemy_stat_display: EnemyStatDisplay
 @export var boss : bool = false
 @export var defaultHealth : int = 1
 
+signal _on_attacked
+signal _on_attack_ended
+
 var health : int = 0
 var damage : DamageType = DamageType.new()
 
@@ -64,7 +67,20 @@ func _damageOverride(newDamage: int):
 	damage.hitPoint = newDamage
 	_updateDisplay()
 
+
 func _takeDamage(damageTaken : int):
 	health -= damageTaken
 	
 	_updateDisplay()
+
+
+func animate_attack():
+	var tween = create_tween()
+	tween.tween_property($Goblin, "position", Vector2(-30, 0), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+	await tween.finished
+	_on_attacked.emit()
+	tween = create_tween()
+	tween.tween_property($Goblin, "position", Vector2(0, 0), 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUINT)
+	await tween.finished
+	_on_attack_ended.emit()
+	

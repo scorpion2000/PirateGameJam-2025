@@ -111,3 +111,9 @@ func _emptyEnemyCount() -> int:
 		if enemy.monsterType == Enemy.MonsterType.EMPTY:
 			i += 1
 	return i
+
+func _getFirst() -> Enemy:
+	return enemies[0]
+
+func _isFirstEmpty() -> bool:
+	return enemies[0].monsterType == Enemy.MonsterType.EMPTY

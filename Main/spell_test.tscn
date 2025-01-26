@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b0l35m8anfghp" path="res://UI/SpellCastingUI/yellow_gem.tres" id="5_alpjs"]
 [ext_resource type="Script" path="res://Scripts/enemy_generator.gd" id="6_hxjg8"]
 [ext_resource type="Texture2D" uid="uid://dotqa0lprd0k2" path="res://Scripts/UI/bottom_panel.png" id="6_rsk1q"]
-[ext_resource type="PackedScene" uid="uid://cct3m3hxs41ul" path="res://Prefabs/goblin_enemy.tscn" id="7_2dqcm"]
+[ext_resource type="PackedScene" uid="uid://cct3m3hxs41ul" path="res://Entities/Enemies/Goblin/goblin_enemy.tscn" id="7_2dqcm"]
 [ext_resource type="Script" path="res://Scripts/turn_handler.gd" id="7_eom2x"]
 [ext_resource type="PackedScene" uid="uid://7254c44kr7o6" path="res://Prefabs/empty_enemy.tscn" id="7_tuftr"]
 [ext_resource type="PackedScene" uid="uid://cicwwp7spnimn" path="res://Entities/Wizard/wizard.tscn" id="8_nlg1d"]

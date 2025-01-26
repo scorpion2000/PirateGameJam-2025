@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7g372cjotvp5"]
 
 [ext_resource type="Script" path="res://Scripts/ui_enemy_cycle.gd" id="1_d11ud"]
-[ext_resource type="PackedScene" uid="uid://cct3m3hxs41ul" path="res://Prefabs/goblin_enemy.tscn" id="2_nc8xd"]
+[ext_resource type="PackedScene" uid="uid://cct3m3hxs41ul" path="res://Entities/Enemies/Goblin/goblin_enemy.tscn" id="2_nc8xd"]
 
 [node name="EnemyCycler" type="Node2D"]
 script = ExtResource("1_d11ud")

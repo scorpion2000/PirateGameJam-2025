@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/player.gd" id="3_iwhog"]
 [ext_resource type="PackedScene" uid="uid://cicwwp7spnimn" path="res://Entities/Wizard/wizard.tscn" id="3_xyost"]
 [ext_resource type="Script" path="res://Scripts/enemy_generator.gd" id="5_lkqxs"]
-[ext_resource type="PackedScene" uid="uid://cct3m3hxs41ul" path="res://Prefabs/goblin_enemy.tscn" id="6_cyhix"]
+[ext_resource type="PackedScene" uid="uid://cct3m3hxs41ul" path="res://Entities/Enemies/Goblin/goblin_enemy.tscn" id="6_cyhix"]
 [ext_resource type="PackedScene" uid="uid://7254c44kr7o6" path="res://Prefabs/empty_enemy.tscn" id="7_5kauf"]
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("enemyCycler", "player")]

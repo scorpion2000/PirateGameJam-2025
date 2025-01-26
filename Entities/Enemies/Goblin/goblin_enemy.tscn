@@ -1,15 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://cct3m3hxs41ul"]
 
-[ext_resource type="PackedScene" uid="uid://bwnbdh03fgrh0" path="res://Entities/Enemies/Goblin/goblin.tscn" id="1_7b7tn"]
-[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_sq6p1"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_47tgb"]
+[ext_resource type="PackedScene" uid="uid://bwnbdh03fgrh0" path="res://Entities/Enemies/Goblin/goblin.tscn" id="2_3ibdf"]
 
 [node name="Goblin Enemy" type="Node2D"]
-script = ExtResource("1_sq6p1")
+script = ExtResource("1_47tgb")
 damageType = 1
 damagePoints = 5
 defaultHealth = 5
 
-[node name="Goblin" parent="." instance=ExtResource("1_7b7tn")]
+[node name="Goblin" parent="." instance=ExtResource("2_3ibdf")]
 
 [node name="Control" type="Control" parent="."]
 visible = false

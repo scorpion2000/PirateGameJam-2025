@@ -8,14 +8,30 @@ class_name TurnHandler
 #This function is used to call fancy functions
 func _endOfTurn(correctSpell : bool, playerDamage: int = 0):
 	if !correctSpell:
-		player._addDamage(enemyCycler._getFirstDamage())
+		
+		#Play animation
+		if not enemyCycler._isFirstEmpty():
+			enemyCycler._getFirst().animate_attack()
+		
+			#Deal damage during animation
+			await enemyCycler.enemies[0]._on_attacked
+			player._addDamage(enemyCycler._getFirstDamage())
+			player._handleTurnDamage()
+		
 		enemyCycler._removeFirstEmpty()
+		
 	elif !_dealDamageToEnemy(playerDamage):
+		
+		enemyCycler.enemies[0].animate_attack()
+		
+		await enemyCycler._getFirstNoneEmpty()._on_attacked
 		player._addDamage(enemyCycler._getFirstDamage())
 		enemyCycler._removeFirstEmpty()
+		player._handleTurnDamage()
 	else:
 		enemyCycler._cycle(correctSpell)
-	player._handleTurnDamage()
+		player._handleTurnDamage()
+
 
 func _onCastResult(result: bool) -> void:
 	_endOfTurn(result)

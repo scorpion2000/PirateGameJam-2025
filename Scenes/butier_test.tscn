@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/turn_handler.gd" id="7_1nxe8"]
 [ext_resource type="Script" path="res://Scripts/enemy_generator.gd" id="8_e77py"]
 [ext_resource type="PackedScene" uid="uid://7254c44kr7o6" path="res://Prefabs/empty_enemy.tscn" id="9_seyyu"]
-[ext_resource type="PackedScene" uid="uid://cct3m3hxs41ul" path="res://Prefabs/goblin_enemy.tscn" id="10_foqur"]
+[ext_resource type="PackedScene" uid="uid://cct3m3hxs41ul" path="res://Entities/Enemies/Goblin/goblin_enemy.tscn" id="10_foqur"]
 [ext_resource type="Script" path="res://Scripts/Spells/spell_manager.gd" id="11_rt4s3"]
 [ext_resource type="Texture2D" uid="uid://dotqa0lprd0k2" path="res://Scripts/UI/bottom_panel.png" id="12_6afpg"]
 [ext_resource type="PackedScene" uid="uid://bhqlk8ee611vw" path="res://UI/SpellCastingUI/gem_button.tscn" id="13_4s07b"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://Entities/Wizard/wizard_speech_panel.gd" id="19_stbkm"]
 [ext_resource type="Texture2D" uid="uid://b85h06v8c67r6" path="res://Scripts/UI/book_icon.png" id="20_40lkb"]
 [ext_resource type="PackedScene" uid="uid://3jawxaqfumoj" path="res://Scripts/Spells/SpellBook/spell_book.tscn" id="21_a7q1k"]
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dffhf"]
 atlas = ExtResource("18_66pcc")
