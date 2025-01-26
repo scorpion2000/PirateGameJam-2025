@@ -23,6 +23,9 @@ func _cycle(removeFirst : bool):
 		return
 	var _first = _getFirstNoneEmpty()
 	enemies.erase(_first)
+	
+	if _first.show_enemy_stats:
+		_first.enemy_stat_display.queue_free()
 	_first.queue_free()
 	var i = 0;
 	for sprite in enemies:
@@ -49,6 +52,8 @@ func _removeFirstEmpty():
 		i += 1
 	if !move:
 		return
+	if enemies[pos].show_enemy_stats:
+		enemies[pos].enemy_stat_display.queue_free()
 	enemies[pos].queue_free()
 	enemies.remove_at(pos)
 	_monsterRequest()

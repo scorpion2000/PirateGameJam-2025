@@ -2,6 +2,7 @@ extends Node
 
 @export var intensity: float = 1.0
 @export var duration: float = 0.8
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	await get_tree().create_timer(1.0).timeout
@@ -20,3 +21,7 @@ func trigger_flash():
 
 func _cast_result(result: bool) -> void:
 	if !result: trigger_flash()
+
+
+func animate(animation: String):
+	animation_player.play(animation)

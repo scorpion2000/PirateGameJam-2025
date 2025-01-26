@@ -5,6 +5,10 @@ class_name Enemy
 
 enum MonsterType {GOBLIN, EMPTY}
 
+const ENEMY_STATS = preload("res://Entities/Enemies/enemy_stats.tscn")
+var enemy_stat_display: EnemyStatDisplay
+@export var show_enemy_stats: bool = true
+
 @export var monsterType : MonsterType = MonsterType.GOBLIN
 ## DEFAULT means the monster's predefined damage type is selected. [br]This allows us to alter a monster's default damage type
 @export var damageType : DamageType.Type = DamageType.Type.DEFAULT
@@ -18,10 +22,6 @@ enum MonsterType {GOBLIN, EMPTY}
 
 var health : int = 0
 var damage : DamageType = DamageType.new()
-
-@onready var damageValueText : Label = self.get_node("Info Panel").get_node("Damage Value")
-@onready var damageTypeText : Label = self.get_node("Info Panel").get_node("Damage Type")
-@onready var healthText : Label = self.get_node("Control").get_node("Health")
 
 func _ready():
 	health = defaultHealth
@@ -37,9 +37,25 @@ func _ready():
 	_updateDisplay()
 
 func _updateDisplay():
-	damageValueText.text = str(damage.hitPoint)
-	damageTypeText.text = DamageType.Type.keys()[damage.type]
-	healthText.text = str(health)
+	if enemy_stat_display:
+		enemy_stat_display.health.text = "HP: %s" % str(health)
+		enemy_stat_display.attack.text = "%s %s" % [DamageType.Type.keys()[damage.type], str(damage.hitPoint)]
+	else:
+		print("HUH")
+	
+	await get_tree().process_frame
+	
+	if GameManager.entity_stats_holder != null and show_enemy_stats and enemy_stat_display == null:
+		enemy_stat_display = ENEMY_STATS.instantiate()
+		GameManager.entity_stats_holder.add_child(enemy_stat_display)
+		enemy_stat_display.linked_enemy = self
+		
+		if enemy_stat_display:
+			enemy_stat_display.health.text = "HP: %s" % str(health)
+			enemy_stat_display.attack.text = "%s %s" % [DamageType.Type.keys()[damage.type], str(damage.hitPoint)]
+		else:
+			print("HUH")
+
 
 func _damageOverride(newDamage: int):
 	damage.hitPoint = newDamage
@@ -47,4 +63,5 @@ func _damageOverride(newDamage: int):
 
 func _takeDamage(damageTaken : int):
 	health -= damageTaken
+	
 	_updateDisplay()

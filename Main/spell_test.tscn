@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d3jlll0lpqj83"]
+[gd_scene load_steps=25 format=3 uid="uid://d3jlll0lpqj83"]
 
 [ext_resource type="Script" path="res://Main/spell_test.gd" id="1_cwvrp"]
 [ext_resource type="Texture2D" uid="uid://o4sog6c85b7o" path="res://Environment/Backgrounds/trees.png" id="2_2kbxk"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://7254c44kr7o6" path="res://Prefabs/empty_enemy.tscn" id="7_tuftr"]
 [ext_resource type="PackedScene" uid="uid://cicwwp7spnimn" path="res://Entities/Wizard/wizard.tscn" id="8_nlg1d"]
 [ext_resource type="Script" path="res://Entities/Wizard/wizard_speech_panel.gd" id="10_pfvie"]
+[ext_resource type="PackedScene" uid="uid://rnt7a4tltagd" path="res://Entities/Enemies/enemy_stats.tscn" id="11_cyubs"]
 [ext_resource type="PackedScene" uid="uid://3jawxaqfumoj" path="res://Scripts/Spells/SpellBook/spell_book.tscn" id="12_8rvb5"]
 [ext_resource type="Texture2D" uid="uid://b85h06v8c67r6" path="res://Scripts/UI/book_icon.png" id="13_3ewc8"]
 [ext_resource type="Texture2D" uid="uid://cx24ccyd5k0xl" path="res://Scripts/UI/SpeechBubble/speech_bubble.png" id="14_hf5hp"]
@@ -68,9 +69,8 @@ horizontal_alignment = 1
 
 [node name="EnemyCycler" parent="." node_paths=PackedStringArray("monsterGenerator") instance=ExtResource("15_mh5mx")]
 unique_name_in_owner = true
-position = Vector2(-51, 0)
+position = Vector2(-49, 0)
 monsterGenerator = NodePath("../EnemyGenerator")
-maxMonsters = 4
 
 [node name="TurnHandler" type="Node" parent="." node_paths=PackedStringArray("enemyCycler", "player")]
 unique_name_in_owner = true
@@ -85,6 +85,17 @@ enemies = Array[PackedScene]([ExtResource("7_2dqcm")])
 bosses = Array[PackedScene]([ExtResource("7_2dqcm")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="EntityStatsDisplay" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="EnemyStats" parent="CanvasLayer/EntityStatsDisplay" instance=ExtResource("11_cyubs")]
 
 [node name="SpellPanel" type="Panel" parent="CanvasLayer"]
 anchors_preset = -1
@@ -116,7 +127,9 @@ offset_left = -0.0160217
 offset_top = -0.0320129
 offset_right = 0.0159912
 offset_bottom = -15.0
+focus_mode = 0
 text = "CAST"
+flat = true
 metadata/row = 2
 metadata/column = 2
 
@@ -139,6 +152,7 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+focus_mode = 0
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/HBoxContainer/Red"]
 layout_mode = 0
@@ -152,6 +166,7 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+focus_mode = 0
 spell_color = 1
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/HBoxContainer/Blue"]
@@ -166,6 +181,7 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+focus_mode = 0
 spell_color = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/HBoxContainer/Green"]
@@ -180,6 +196,7 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+focus_mode = 0
 spell_color = 3
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/HBoxContainer/Yellow"]
@@ -227,6 +244,7 @@ offset_left = 31.0
 offset_top = 81.0
 offset_right = 124.0
 offset_bottom = 208.0
+focus_mode = 0
 text = "SpellBook"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/SpellPanel/OpenSpellBook"]

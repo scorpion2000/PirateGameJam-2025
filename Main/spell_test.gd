@@ -3,7 +3,11 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
+	GameManager.entity_stats_holder = $CanvasLayer/EntityStatsDisplay
+	
 	await get_tree().process_frame
+	
 	
 	print(GlobalSpells.get_expected_result([GlobalSpells.spells[0], GlobalSpells.spells[1], GlobalSpells.spells[2]]))
 

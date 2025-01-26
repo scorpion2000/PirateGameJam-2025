@@ -31,6 +31,12 @@ func start_spell():
 	can_cast = true
 	current_spell = PlayerData.generate_spell()
 	speak(GlobalSpells.spell_to_string(current_spell))
+	
+	%Wizard.animation_player.play("spell_start")
+	await %Wizard.animation_player.animation_finished
+	if can_cast:
+		%Wizard.animation_player.play("spell_wait")
+	
 
 
 func cast_spell():
@@ -41,12 +47,14 @@ func _on_cast_button_down() -> void:
 	if can_cast:
 		if current_result == GlobalSpells.get_expected_result(current_spell):
 			speak("Success")
-			%TurnHandler._endOfTurn(true, 5)
+			%TurnHandler._endOfTurn(true, 2)
 		else:
 			speak("Failure")
 			%TurnHandler._endOfTurn(false)
 		
 		can_cast = false
+		
+		%Wizard.animation_player.play("spell_end")
 		
 		$SpellCooldown.start()
 		await $SpellCooldown.timeout

@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://rnt7a4tltagd"]
+
+[ext_resource type="Script" path="res://Entities/enemy_stats_display.gd" id="1_k5euf"]
+
+[node name="EnemyStats" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_k5euf")
+
+[node name="Health" type="Label" parent="."]
+layout_mode = 0
+offset_left = -50.0
+offset_top = -100.0
+offset_right = 50.0
+offset_bottom = -82.0
+pivot_offset = Vector2(50, 0)
+text = "HP: 0"
+horizontal_alignment = 1
+
+[node name="Attack" type="Label" parent="."]
+layout_mode = 0
+offset_left = -50.0
+offset_right = 50.0
+offset_bottom = 18.0
+pivot_offset = Vector2(50, 0)
+text = "Attack"
+horizontal_alignment = 1
