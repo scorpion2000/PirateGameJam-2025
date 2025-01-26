@@ -40,6 +40,7 @@ func _updateDisplay():
 	if enemy_stat_display:
 		enemy_stat_display.health.text = "HP: %s" % str(health)
 		enemy_stat_display.attack.text = "%s %s" % [DamageType.Type.keys()[damage.type], str(damage.hitPoint)]
+		enemy_stat_display.progress_bar.value = health
 	else:
 		print("HUH")
 	
@@ -49,6 +50,8 @@ func _updateDisplay():
 		enemy_stat_display = ENEMY_STATS.instantiate()
 		GameManager.entity_stats_holder.add_child(enemy_stat_display)
 		enemy_stat_display.linked_enemy = self
+		enemy_stat_display.progress_bar.max_value = health
+		enemy_stat_display.progress_bar.value = health
 		
 		if enemy_stat_display:
 			enemy_stat_display.health.text = "HP: %s" % str(health)

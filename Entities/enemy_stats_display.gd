@@ -3,7 +3,8 @@ class_name EnemyStatDisplay
 
 var linked_enemy: Enemy = null
 
-@onready var health: Label = $Health
+@onready var progress_bar: ProgressBar = $ProgressBar
+@onready var health: Label = $ProgressBar/Health
 @onready var attack: Label = $Attack
 
 
