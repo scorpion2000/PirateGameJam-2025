@@ -51,14 +51,13 @@ anchor_bottom = 1.0
 offset_top = 0.0779991
 
 [node name="Card1" parent="MarginContainer/Control/HBoxContainer" instance=ExtResource("2_sv8xe")]
+visible = false
 layout_mode = 2
 
 [node name="Card2" parent="MarginContainer/Control/HBoxContainer" instance=ExtResource("2_sv8xe")]
+visible = false
 layout_mode = 2
 
 [node name="Card3" parent="MarginContainer/Control/HBoxContainer" instance=ExtResource("2_sv8xe")]
+visible = false
 layout_mode = 2
-
-[connection signal="card_pressed" from="MarginContainer/Control/HBoxContainer/Card1" to="." method="_on_card_pressed"]
-[connection signal="card_pressed" from="MarginContainer/Control/HBoxContainer/Card2" to="." method="_on_card_pressed"]
-[connection signal="card_pressed" from="MarginContainer/Control/HBoxContainer/Card3" to="." method="_on_card_pressed"]

@@ -47,7 +47,7 @@ func animate_button_press():
 
 
 func _on_hover_book(is_over: bool = true):
-	var tween = create_tween()
+	tween = create_tween()
 	if is_over:
 		tween.tween_property($TextureRect, "position", Vector2(0, -2), 0.1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
 	else:

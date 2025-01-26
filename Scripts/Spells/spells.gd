@@ -8,7 +8,12 @@ var spells: Array[Spell] = [
 	
 	Spell.new("Abra").add_condition(SpellColor.RED, SpellStatus.OFF),
 	Spell.new("Kadabra").add_condition(SpellColor.BLUE, SpellStatus.ON),
-	Spell.new("Boop").add_condition(SpellColor.RED, SpellStatus.SWITCH).add_condition(SpellColor.BLUE, SpellStatus.SWITCH)
+	Spell.new("Hocus").add_condition(SpellColor.GREEN, SpellStatus.ON),
+	Spell.new("Boop").add_condition(SpellColor.RED, SpellStatus.SWITCH).add_condition(SpellColor.BLUE, SpellStatus.SWITCH),
+	Spell.new("Shazam").add_condition(SpellColor.BLUE, SpellStatus.ON).add_condition(SpellColor.YELLOW, SpellStatus.ON),
+	Spell.new("Pocus").add_condition(SpellColor.YELLOW, SpellStatus.SWITCH).add_condition(SpellColor.GREEN, SpellStatus.ON),
+	Spell.new("Presto").add_condition(SpellColor.RED, SpellStatus.ON).add_condition(SpellColor.YELLOW, SpellStatus.OFF),
+	Spell.new("Kazam").add_condition(SpellColor.GREEN, SpellStatus.ON).add_condition(SpellColor.BLUE, SpellStatus.SWITCH).add_condition(SpellColor.YELLOW, SpellStatus.ON),
 	
 ]
 

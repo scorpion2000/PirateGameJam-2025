@@ -1,22 +1,44 @@
 extends Button
 class_name RewardCard
 
-signal card_pressed(spell: Spell)
-
 @onready var type_label: Label = %Type
-@onready var description_label: Label = %Description
+@onready var name_label: Label = %Name
 @onready var texture_rect: TextureRect = %TextureRect
 
-var card_spell: Spell
+enum RewardType { SPELL, STATS }
+var card_type: RewardType
+var card_reward
+var card_stat: int = 0
 
 func _enter_tree() -> void:
 	pressed.connect(_on_pressed)
 
-func set_card(spell: Spell, type: String, description: String, texture: Texture2D):
-	card_spell = spell
-	type_label.text = type
-	description_label.text = description
-	texture_rect.texture = texture
+func setup_card(reward_name: String, type: RewardType, reward: Variant):
+	card_type = type
+	type_label.text = "Word"
+	name_label.text = reward_name
+	card_reward = reward
+	self.visible = true
+	
+	match card_type:
+		RewardType.SPELL:
+			type_label.text = "Word"
+		RewardType.STATS:
+			type_label.text = "Stats"
 
 func _on_pressed() -> void:
-	card_pressed.emit(card_spell)
+	match card_type:
+		RewardType.SPELL:
+			var spell : Spell = card_reward as Spell
+			var spell_index = PlayerData.spell_pool.find(spell)
+			if spell_index != -1:
+				PlayerData.add_spell(spell_index)
+			
+			for spellx in PlayerData.spells:
+				print(spellx.word)
+		RewardType.STATS:
+			var player = get_tree().get_first_node_in_group("Player") as Player
+			player.health += card_reward as float
+			print(player.health)
+			if player.health > 100:
+				player.health = 100

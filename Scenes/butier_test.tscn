@@ -1,6 +1,5 @@
 [gd_scene load_steps=24 format=3 uid="uid://dmprkw8eam8fu"]
 
-[ext_resource type="Script" path="res://Main/spell_test.gd" id="1_cpcuv"]
 [ext_resource type="Texture2D" uid="uid://o4sog6c85b7o" path="res://Environment/Backgrounds/trees.png" id="2_pa335"]
 [ext_resource type="Texture2D" uid="uid://bb3j6qardd47i" path="res://Environment/Backgrounds/floor.png" id="3_im3pk"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="4_c6554"]
@@ -21,7 +20,7 @@
 [ext_resource type="Script" path="res://Entities/Wizard/wizard_speech_panel.gd" id="19_stbkm"]
 [ext_resource type="Texture2D" uid="uid://b85h06v8c67r6" path="res://Scripts/UI/book_icon.png" id="20_40lkb"]
 [ext_resource type="PackedScene" uid="uid://3jawxaqfumoj" path="res://Scripts/Spells/SpellBook/spell_book.tscn" id="21_a7q1k"]
-
+[ext_resource type="PackedScene" uid="uid://cy5nwhp2fshpw" path="res://UI/Reward/RewardUI.tscn" id="22_ujalx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dffhf"]
 atlas = ExtResource("18_66pcc")
@@ -32,7 +31,6 @@ atlas = ExtResource("18_66pcc")
 region = Rect2(32, 32, 16, 16)
 
 [node name="SpellTest" type="Node2D"]
-script = ExtResource("1_cpcuv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
@@ -51,7 +49,8 @@ texture = ExtResource("3_im3pk")
 region_enabled = true
 region_rect = Rect2(0, 64, 288, 64)
 
-[node name="Player" type="Node" parent="."]
+[node name="Player" type="Node" parent="." groups=["Player"]]
+unique_name_in_owner = true
 script = ExtResource("4_c6554")
 health = 100
 
@@ -250,6 +249,20 @@ texture = ExtResource("20_40lkb")
 [node name="SpellBook" parent="CanvasLayer" instance=ExtResource("21_a7q1k")]
 offset_top = 352.0
 offset_bottom = 880.0
+
+[node name="RewardUI" parent="CanvasLayer" instance=ExtResource("22_ujalx")]
+visible = false
+custom_minimum_size = Vector2(500, 250)
+anchor_left = 0.283
+anchor_top = 0.086
+anchor_right = 0.717
+anchor_bottom = 0.472
+offset_left = -0.0160217
+offset_top = 0.271999
+offset_right = 0.0159912
+offset_bottom = 0.143982
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="button_down" from="CanvasLayer/SpellPanel/CastButton" to="CanvasLayer/SpellPanel" method="_on_cast_button_down"]
 [connection signal="button_down" from="CanvasLayer/SpellPanel/OpenSpellBook" to="CanvasLayer/SpellPanel" method="_on_open_spell_book_button_down"]

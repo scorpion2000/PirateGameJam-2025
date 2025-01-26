@@ -4,10 +4,6 @@ extends Node
 @export var duration: float = 0.8
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-func _ready() -> void:
-	await get_tree().create_timer(1.0).timeout
-	trigger_flash()
-
 func trigger_flash():
 	var player_shader = self.material
 	var time = 0.0

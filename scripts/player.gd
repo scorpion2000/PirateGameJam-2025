@@ -1,13 +1,16 @@
 extends Node
 class_name Player
 
-@export var health : int = 10
-
 var damageBuffer : Array[DamageType]
 signal turnReady
 
 @onready var healthLabel : Label = self.get_node("HealthLabel")
 @onready var spritePos : Node2D = $Wizard
+
+@export var health : int = 10 :
+	set(value):
+		health = value
+		if healthLabel: healthLabel.text = str(value)
 
 func _ready():
 	_takeDamage(0)
@@ -33,7 +36,6 @@ func _addDamage(newDamage : DamageType):
 #Insert fancy damage taking graphics here
 func _takeDamage(damage : int):
 	health = health - damage
-	healthLabel.text = str(health)
 	var damageIndicator : DamageIndicator = DamageIndicator.new()
 	damageIndicator.damage = damage
 	damageIndicator.global_position = spritePos.global_position
