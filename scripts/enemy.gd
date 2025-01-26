@@ -70,22 +70,24 @@ func _damageOverride(newDamage: int):
 
 func _takeDamage(damageTaken : int):
 	health -= damageTaken
-	_updateDisplay()
 	
 	var damageIndicator : DamageIndicator = DamageIndicator.new()
 	damageIndicator.damage = damageTaken
 	damageIndicator.global_position = global_position
 	add_child(damageIndicator)
+	
+	_updateDisplay()
 
 
 func animate_attack():
-	var tween = create_tween()
-	tween.tween_property($Goblin, "position", Vector2(-30, 0), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
-	await tween.finished
-	_on_attacked.emit()
-	tween = create_tween()
-	tween.tween_property($Goblin, "position", Vector2(0, 0), 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUINT)
-	await tween.finished
-	_on_attack_ended.emit()
+	if monsterType != MonsterType.EMPTY:
+		var tween = create_tween()
+		tween.tween_property($Goblin, "position", Vector2(-30, 0), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+		await tween.finished
+		_on_attacked.emit()
+		tween = create_tween()
+		tween.tween_property($Goblin, "position", Vector2(0, 0), 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUINT)
+		await tween.finished
+		_on_attack_ended.emit()
 	
 	
