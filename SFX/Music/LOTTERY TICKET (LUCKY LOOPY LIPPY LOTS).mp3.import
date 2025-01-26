@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://1o8epp6j5j62"
+path="res://.godot/imported/LOTTERY TICKET (LUCKY LOOPY LIPPY LOTS).mp3-fc89a84497bd17528602849e9d498808.mp3str"
+
+[deps]
+
+source_file="res://SFX/Music/LOTTERY TICKET (LUCKY LOOPY LIPPY LOTS).mp3"
+dest_files=["res://.godot/imported/LOTTERY TICKET (LUCKY LOOPY LIPPY LOTS).mp3-fc89a84497bd17528602849e9d498808.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

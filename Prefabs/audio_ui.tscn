@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://btknv5e86m6bc"]
+
+[ext_resource type="Script" path="res://Scripts/audio_settings.gd" id="1_ac0w3"]
+[ext_resource type="Texture2D" uid="uid://dm8prywusfju8" path="res://UI/Icons/audio_icon.png" id="1_jbj0f"]
+[ext_resource type="PackedScene" uid="uid://b4feur22iag5r" path="res://Prefabs/audio_settings.tscn" id="2_horb0"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ac0w3")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+icon = ExtResource("1_jbj0f")
+
+[node name="Control" parent="." instance=ExtResource("2_horb0")]
+layout_mode = 0
+offset_left = 947.0
+offset_top = 42.0
+offset_right = 1147.0
+offset_bottom = 206.0

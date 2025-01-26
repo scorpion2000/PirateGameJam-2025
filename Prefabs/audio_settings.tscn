@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://b4feur22iag5r"]
+
+[node name="Control" type="VBoxContainer"]
+offset_right = 200.0
+offset_bottom = 43.0
+alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sound Controls"
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Master"
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 2
+min_value = -30.0
+max_value = 0.0
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Music"
+
+[node name="HSlider2" type="HSlider" parent="."]
+layout_mode = 2
+min_value = -30.0
+max_value = 0.0
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Effects"
+
+[node name="HSlider3" type="HSlider" parent="."]
+layout_mode = 2
+min_value = -30.0
+max_value = 0.0
