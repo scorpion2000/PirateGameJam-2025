@@ -66,5 +66,8 @@ func _damageOverride(newDamage: int):
 
 func _takeDamage(damageTaken : int):
 	health -= damageTaken
-	
 	_updateDisplay()
+	var damageIndicator : DamageIndicator = DamageIndicator.new()
+	damageIndicator.damage = damageTaken
+	damageIndicator.global_position = global_position
+	add_child(damageIndicator)

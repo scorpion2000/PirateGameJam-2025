@@ -7,6 +7,7 @@ var damageBuffer : Array[DamageType]
 signal turnReady
 
 @onready var healthLabel : Label = self.get_node("HealthLabel")
+@onready var spritePos : Node2D = $Wizard
 
 func _ready():
 	_takeDamage(0)
@@ -33,3 +34,7 @@ func _addDamage(newDamage : DamageType):
 func _takeDamage(damage : int):
 	health = health - damage
 	healthLabel.text = str(health)
+	var damageIndicator : DamageIndicator = DamageIndicator.new()
+	damageIndicator.damage = damage
+	damageIndicator.global_position = spritePos.global_position
+	add_child(damageIndicator)
