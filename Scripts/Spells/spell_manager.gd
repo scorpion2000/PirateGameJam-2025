@@ -22,6 +22,29 @@ func _ready() -> void:
 	start_spell()
 
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("open_spell_book"):
+		toggle_open_book()
+	
+	
+	if Input.is_action_just_pressed("cast_spell"):
+		cast_spell()
+	
+	
+	if Input.is_action_just_pressed("toggle_red"):
+		$HBoxContainer/Red.toggle()
+		$HBoxContainer/Red.animate_button_press()
+	if Input.is_action_just_pressed("toggle_blue"):
+		$HBoxContainer/Blue.toggle()
+		$HBoxContainer/Blue.animate_button_press()
+	if Input.is_action_just_pressed("toggle_green"):
+		$HBoxContainer/Green.toggle()
+		$HBoxContainer/Green.animate_button_press()
+	if Input.is_action_just_pressed("toggle_yellow"):
+		$HBoxContainer/Yellow.toggle()
+		$HBoxContainer/Yellow.animate_button_press()
+
+
 func update_result(spell_color: GlobalSpells.SpellColor, value):
 	current_result[spell_color] = value
 	print(current_result)
@@ -36,14 +59,9 @@ func start_spell():
 	await %Wizard.animation_player.animation_finished
 	if can_cast:
 		%Wizard.animation_player.play("spell_wait")
-	
 
 
 func cast_spell():
-	pass
-
-
-func _on_cast_button_down() -> void:
 	if can_cast:
 		if current_result == GlobalSpells.get_expected_result(current_spell):
 			speak("Success")
@@ -62,11 +80,19 @@ func _on_cast_button_down() -> void:
 		start_spell()
 
 
+func _on_cast_button_down() -> void:
+	cast_spell()
+
+
 func speak(text: String):
 	$WizardSpeechPanel.set_speech(text)
 
 
 func _on_open_spell_book_button_down() -> void:
+	toggle_open_book()
+
+
+func toggle_open_book():
 	PlayerData.spell_book.set_open()
 	var tween = create_tween()
 	tween.tween_property($OpenSpellBook/TextureRect, "rotation_degrees", 10.0, 0.1).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_ELASTIC)

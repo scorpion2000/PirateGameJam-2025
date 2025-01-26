@@ -21,8 +21,7 @@ func _ready() -> void:
 	button_down.connect(_on_button_down)
 
 func _on_button_toggled():
-	is_toggled = !is_toggled
-	self.modulate = Color(1,1,1) if is_toggled else Color(0.5,0.5,0.5)
+	toggle()
 	
 #func _on_button_down() -> void:
 	#texture_rect.pivot_offset = texture_rect.size / 2
@@ -31,7 +30,17 @@ func _on_button_toggled():
 	#tween.tween_property(texture_rect, "rotation_degrees", 10.0, 0.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_ELASTIC)
 	#tween.tween_property(texture_rect, "rotation_degrees", 0.0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 
+
+func toggle():
+	is_toggled = !is_toggled
+	self.modulate = Color(1,1,1) if is_toggled else Color(0.5,0.5,0.5)
+
+
 func _on_button_down() -> void:
+	animate_button_press()
+
+
+func animate_button_press():
 	tween = create_tween()
 	tween.tween_property($TextureRect, "rotation_degrees", 10.0, 0.1).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_ELASTIC)
 	tween.tween_property($TextureRect, "rotation_degrees", 0.0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
