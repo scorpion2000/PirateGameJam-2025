@@ -50,6 +50,3 @@ script = ExtResource("5_lkqxs")
 emptyEnemy = ExtResource("7_5kauf")
 enemies = Array[PackedScene]([ExtResource("6_cyhix")])
 bosses = Array[PackedScene]([ExtResource("6_cyhix")])
-
-[connection signal="pressed" from="DEBUG SUCCESS" to="." method="_endOfTurn" binds= [true, 10]]
-[connection signal="pressed" from="DEBUG FAILURE" to="." method="_endOfTurn" binds= [false]]

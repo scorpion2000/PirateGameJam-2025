@@ -71,7 +71,11 @@ func _damageOverride(newDamage: int):
 func _takeDamage(damageTaken : int):
 	health -= damageTaken
 	_updateDisplay()
-<<<<<<< HEAD
+	
+	var damageIndicator : DamageIndicator = DamageIndicator.new()
+	damageIndicator.damage = damageTaken
+	damageIndicator.global_position = global_position
+	add_child(damageIndicator)
 
 
 func animate_attack():
@@ -84,9 +88,4 @@ func animate_attack():
 	await tween.finished
 	_on_attack_ended.emit()
 	
-=======
-	var damageIndicator : DamageIndicator = DamageIndicator.new()
-	damageIndicator.damage = damageTaken
-	damageIndicator.global_position = global_position
-	add_child(damageIndicator)
->>>>>>> e84f2cd3842e2b5c3fa9ee3c578f6a6f2cd4e297
+	

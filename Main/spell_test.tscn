@@ -69,8 +69,8 @@ horizontal_alignment = 1
 [node name="EnemyCycler" parent="." node_paths=PackedStringArray("monsterGenerator") instance=ExtResource("15_mh5mx")]
 unique_name_in_owner = true
 position = Vector2(-49, 0)
-monsterGenerator = NodePath("../EnemyGenerator")
 maxMonsters = 6
+monsterGenerator = NodePath("../EnemyGenerator")
 
 [node name="TurnHandler" type="Node" parent="." node_paths=PackedStringArray("enemyCycler", "player")]
 unique_name_in_owner = true
