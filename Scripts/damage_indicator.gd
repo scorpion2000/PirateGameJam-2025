@@ -6,6 +6,7 @@ var timer : Timer = Timer.new()
 var damage : int = 0
 
 func _ready():
+	gravity_scale = 2
 	add_child(label)
 	add_child(timer)
 	label.text = str(-damage)
