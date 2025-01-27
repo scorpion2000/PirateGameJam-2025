@@ -3,7 +3,7 @@ class_name UIEnemyCycle
 
 @export var emptyImage : PackedScene
 @export var monsterGenerator : EnemyGenerator
-@export var maxMonsters : int = 7
+@export var maxMonsters : int = 10
 
 var imageWidth = 40
 var enemies : Array[Enemy]
@@ -33,7 +33,7 @@ func _cycle(removeFirst : bool):
 		i = i + 1
 	if DEBUG:
 		_DEBUG_generate_image(enemies.size())
-	_monsterRequest()
+	#_monsterRequest()
 
 func _removeFirstEmpty():
 	print("removing first empty enemy")
@@ -56,7 +56,7 @@ func _removeFirstEmpty():
 		enemies[pos].enemy_stat_display.queue_free()
 	enemies[pos].queue_free()
 	enemies.remove_at(pos)
-	_monsterRequest()
+	#_monsterRequest()
 
 func _monsterRequest():
 	if monsterGenerator == null:
