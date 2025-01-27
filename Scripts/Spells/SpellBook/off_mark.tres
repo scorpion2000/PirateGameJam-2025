@@ -1,8 +1,9 @@
 [gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://quv8uiyslqs7"]
 
-[ext_resource type="Texture2D" uid="uid://csq5vbgcckpm" path="res://Scripts/Spells/SpellBook/spell_condition.png" id="1_m3icr"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n826q"]
+load_path = "res://.godot/imported/spell_condition.png-65a2e45ed17265aa1272a5dc3da26c46.ctex"
 
 [resource]
 resource_local_to_scene = true
-atlas = ExtResource("1_m3icr")
+atlas = SubResource("CompressedTexture2D_n826q")
 region = Rect2(8, 9, 9, 9)

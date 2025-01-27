@@ -7,7 +7,7 @@ signal turnReady
 @onready var healthLabel : Label = self.get_node("HealthLabel")
 @onready var spritePos : Node2D = $Wizard
 
-@export var health : int = 10 :
+@export var health : int = PlayerData.base_health :
 	set(value):
 		health = value
 		if healthLabel: healthLabel.text = str(value)

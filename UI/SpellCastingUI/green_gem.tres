@@ -3,5 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://d033tapswhodr" path="res://UI/SpellCastingUI/gems.png" id="1_200ur"]
 
 [resource]
+resource_local_to_scene = true
 atlas = ExtResource("1_200ur")
 region = Rect2(20, 1, 18, 18)
