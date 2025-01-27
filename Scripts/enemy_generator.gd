@@ -22,7 +22,7 @@ func _generatePatternless(volume : int, last : bool = false) -> Array[Enemy]:
 			enemyGroup.push_back(bosses.pick_random().instantiate())
 			spawnedBosses += 1
 			continue
-		if randf() < 0.25:
+		if randf() < 0.10:
 			enemyGroup.push_back(emptyEnemy.instantiate())
 		else:
 			enemyGroup.push_back(enemies.pick_random().instantiate())
