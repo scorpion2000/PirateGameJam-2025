@@ -14,7 +14,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	await get_tree().create_timer(2.0).timeout
-	activate_ui()
+	#activate_ui()
 
 func activate_ui():
 	self.visible = true
