@@ -3,6 +3,11 @@ class_name TurnHandler
 
 @export var enemyCycler : UIEnemyCycle
 @export var player : Player
+@export var rewardUi: Control
+
+func _ready():
+	if rewardUi != null:
+		rewardUi.reward_selected.connect(_generateWave)
 
 #TRUE if correct spell was cast
 #This function is used to call fancy functions
@@ -46,3 +51,16 @@ func _dealDamageToEnemy(damage : int) -> bool:
 	if _enemy.health <= 0:
 		return true
 	return false
+
+
+func _generateWave():
+	#This function has to be called when card selection was made
+	if enemyCycler.enemies.size() != 0:
+		return
+	enemyCycler._monsterRequest()
+
+func _endOfWave():
+	if enemyCycler.enemies.size() != 0:
+		return
+	#Call the end of round card selection here
+	rewardUi.activate_ui()
