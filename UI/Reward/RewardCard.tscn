@@ -80,6 +80,12 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
+[node name="TextureRect" type="TextureRect" parent="Container"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_hdkqq")
+expand_mode = 1
+
 [node name="Control" type="Control" parent="Container"]
 layout_mode = 2
 mouse_filter = 2
@@ -91,6 +97,8 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.1
+offset_top = 1.0
+offset_bottom = 1.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 text = "New Spell:"
@@ -102,24 +110,12 @@ autowrap_mode = 2
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.1
+anchor_top = 0.465
 anchor_right = 1.0
-anchor_bottom = 0.2
+anchor_bottom = 0.565
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 text = "Boo-Kadabra"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Container/Control"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.2
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_hdkqq")
-expand_mode = 1

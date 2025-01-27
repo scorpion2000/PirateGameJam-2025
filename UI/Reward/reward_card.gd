@@ -22,7 +22,7 @@ func setup_card(reward_name: String, type: RewardType, reward: Variant):
 	
 	match card_type:
 		RewardType.SPELL:
-			type_label.text = "Word"
+			type_label.text = "New Word:"
 		RewardType.STATS:
 			type_label.text = "Stats"
 
