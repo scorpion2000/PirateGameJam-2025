@@ -72,6 +72,12 @@ texture = ExtResource("6_cwre4")
 region_enabled = true
 region_rect = Rect2(0, 32, 16, 16)
 
+[node name="Blast" type="Sprite2D" parent="Player"]
+visible = false
+texture = ExtResource("6_cwre4")
+region_enabled = true
+region_rect = Rect2(16, 32, 16, 16)
+
 [node name="EnemyCycler" parent="." node_paths=PackedStringArray("monsterGenerator") instance=ExtResource("15_mh5mx")]
 unique_name_in_owner = true
 position = Vector2(-49, 0)

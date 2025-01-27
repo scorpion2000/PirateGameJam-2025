@@ -8,6 +8,7 @@ signal _on_attack_end
 @onready var healthLabel : Label = self.get_node("HealthLabel")
 @onready var spritePos : Node2D = $Wizard
 @onready var bullet: Sprite2D = $Bullet
+@onready var blast: Sprite2D = $Blast
 
 var health : int = PlayerData.base_health :
 	set(value):
@@ -61,3 +62,14 @@ func shoot_bullet(x_pos: float, speed: int = 1):
 	await tween.finished
 	_on_attack_end.emit()
 	bullet.hide()
+	
+	blast.global_position = bullet.global_position
+	blast.show()
+	
+	tween = create_tween()
+	tween.tween_property(blast, "scale", Vector2(1.2, 1.2), 0.1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(blast, "scale", Vector2(1, 1), 0.1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	
+	await tween.finished
+	
+	blast.hide()

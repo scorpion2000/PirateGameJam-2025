@@ -28,8 +28,6 @@ func _endOfTurn(correctSpell : bool, playerDamage: int = 0):
 		player._addDamage(enemyCycler._getFirstDamage())
 		enemyCycler._removeFirstEmpty()
 		player._handleTurnDamage()
-		
-		enemyCycler._cycle(correctSpell)
 	else:
 		enemyCycler._cycle(correctSpell)
 		player._handleTurnDamage()
