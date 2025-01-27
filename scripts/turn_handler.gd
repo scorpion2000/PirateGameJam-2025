@@ -19,8 +19,8 @@ func _endOfTurn(correctSpell : bool, playerDamage: int = 0):
 			player._handleTurnDamage()
 		
 		enemyCycler._removeFirstEmpty()
-		
-	elif !_dealDamageToEnemy(playerDamage):
+	
+	elif ! await _dealDamageToEnemy(playerDamage):
 		
 		enemyCycler.enemies[0].animate_attack()
 		
@@ -28,6 +28,8 @@ func _endOfTurn(correctSpell : bool, playerDamage: int = 0):
 		player._addDamage(enemyCycler._getFirstDamage())
 		enemyCycler._removeFirstEmpty()
 		player._handleTurnDamage()
+		
+		enemyCycler._cycle(correctSpell)
 	else:
 		enemyCycler._cycle(correctSpell)
 		player._handleTurnDamage()
@@ -38,7 +40,11 @@ func _onCastResult(result: bool) -> void:
 
 func _dealDamageToEnemy(damage : int) -> bool:
 	var _enemy : Enemy = enemyCycler._getFirstNoneEmpty()
+	
 	_enemy._takeDamage(damage)
+	
+	await player._on_attack_end
+	
 	if _enemy.health <= 0:
 		return true
 	return false

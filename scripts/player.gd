@@ -3,17 +3,25 @@ class_name Player
 
 var damageBuffer : Array[DamageType]
 signal turnReady
+signal _on_attack_end
 
 @onready var healthLabel : Label = self.get_node("HealthLabel")
 @onready var spritePos : Node2D = $Wizard
+@onready var bullet: Sprite2D = $Bullet
 
-@export var health : int = PlayerData.base_health :
+var health : int = PlayerData.base_health :
 	set(value):
 		health = value
 		if healthLabel: healthLabel.text = str(value)
 
 func _ready():
 	_takeDamage(0)
+	
+	var bullet_tween: Tween = create_tween()
+	bullet_tween.bind_node(bullet)
+	bullet_tween.tween_property(bullet, "scale", Vector2(1, 0.8), 0.3).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	bullet_tween.tween_property(bullet, "scale", Vector2(1, 1), 0.3).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	bullet_tween.set_loops()
 
 func _handleTurnDamage():
 	var _damageBuffer : Array[DamageType]
@@ -40,3 +48,16 @@ func _takeDamage(damage : int):
 	damageIndicator.damage = damage
 	damageIndicator.global_position = spritePos.global_position
 	add_child(damageIndicator)
+
+
+func shoot_bullet(x_pos: float, speed: int = 1):
+	bullet.global_position = spritePos.shoot_point.global_position
+	bullet.show()
+	
+	var tween: Tween = create_tween()
+	
+	tween.tween_property(bullet, "position", Vector2(x_pos, bullet.position.y), 0.1 * (speed + 1))
+	
+	await tween.finished
+	_on_attack_end.emit()
+	bullet.hide()

@@ -105,6 +105,15 @@ func _getFirstNoneEmpty() -> Enemy:
 			return enemy
 	return null
 
+func _getPositionOfFirstNoneEmpty() -> int:
+	var num = 0
+	
+	for enemy in enemies:
+		num += 1
+		if enemy.monsterType != Enemy.MonsterType.EMPTY:
+			return num
+	return num
+
 func _emptyEnemyCount() -> int:
 	var i = 0
 	for enemy in enemies:

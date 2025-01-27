@@ -3,6 +3,8 @@ extends Node
 @export var intensity: float = 1.0
 @export var duration: float = 0.8
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var shoot_point: Node2D = $Wand/ShootPoint
+
 
 func trigger_flash():
 	var player_shader = self.material

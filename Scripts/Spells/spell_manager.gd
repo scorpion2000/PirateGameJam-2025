@@ -65,7 +65,8 @@ func cast_spell():
 	if can_cast:
 		if current_result == GlobalSpells.get_expected_result(current_spell):
 			speak("Success")
-			%TurnHandler._endOfTurn(true, 2)
+			%TurnHandler._endOfTurn(true, PlayerData.base_attack)
+			%Wizard.get_parent().shoot_bullet(%EnemyCycler._getFirstNoneEmpty().global_position.x, %EnemyCycler._getPositionOfFirstNoneEmpty())
 		else:
 			speak("Failure")
 			%TurnHandler._endOfTurn(false)
@@ -73,6 +74,8 @@ func cast_spell():
 		can_cast = false
 		
 		%Wizard.animation_player.play("spell_end")
+		await %Wizard.animation_player.animation_finished
+		%Wizard.get_parent()._on_attack_end.emit()
 		
 		$SpellCooldown.start()
 		await $SpellCooldown.timeout

@@ -19,7 +19,6 @@ monsterGenerator = NodePath("../EnemyGenerator")
 
 [node name="Player" type="Node" parent="."]
 script = ExtResource("3_iwhog")
-health = 100
 
 [node name="Wizard" parent="Player" instance=ExtResource("3_xyost")]
 position = Vector2(57, 164)
