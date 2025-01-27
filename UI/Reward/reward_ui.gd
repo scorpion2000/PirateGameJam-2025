@@ -5,6 +5,8 @@ enum RewardType { SPELL, STATS }
 var stat_upgrades: Array = [25, 10, 5]  # Example stat values
 var card_buttons: Array[RewardCard] = []
 
+signal reward_selected
+
 func _enter_tree() -> void:
 	var buttons = %HBoxContainer.get_children()
 	for button in buttons:
@@ -54,3 +56,4 @@ func get_new_spells() -> Array:
 
 func _on_card_pressed():
 	self.visible = false
+	reward_selected.emit()
