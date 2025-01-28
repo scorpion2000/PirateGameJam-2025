@@ -9,41 +9,4 @@ damageType = 1
 damagePoints = 5
 defaultHealth = 5
 
-[node name="Goblin" parent="." instance=ExtResource("2_3ibdf")]
-
-[node name="Control" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_left = -50.0
-offset_top = -40.0
-offset_right = 50.0
-offset_bottom = -24.0
-
-[node name="Health" type="Label" parent="Control"]
-layout_mode = 2
-offset_left = 45.5
-offset_top = 21.0
-offset_right = 93.5
-offset_bottom = 37.0
-scale = Vector2(0.5, 0.5)
-size_flags_horizontal = 4
-text = "34954"
-vertical_alignment = 1
-
-[node name="Info Panel" type="HBoxContainer" parent="."]
-visible = false
-offset_left = -5.0
-offset_right = 32.0
-offset_bottom = 17.0
-scale = Vector2(0.3, 0.3)
-
-[node name="Damage Value" type="Label" parent="Info Panel"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "2"
-
-[node name="Damage Type" type="Label" parent="Info Panel"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Slash"
+[node name="Body" parent="." instance=ExtResource("2_3ibdf")]

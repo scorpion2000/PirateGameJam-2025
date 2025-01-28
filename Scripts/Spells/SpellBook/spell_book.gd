@@ -9,9 +9,6 @@ const spell_example = preload("res://Scripts/Spells/SpellBook/spell_example.tscn
 
 func _ready() -> void:
 	PlayerData.spell_book = self
-	
-	for i in PlayerData.spells:
-		add_spell(i)
 
 
 func add_spell(spell: Spell):

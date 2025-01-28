@@ -19,6 +19,8 @@ var base_attack: int = 3
 func _ready() -> void:
 	spell_pool = GlobalSpells.spells.duplicate()
 	
+	await get_tree().process_frame
+	
 	# Add 2 random spells to start
 	for i in 2:
 		var random: int = randi_range(0, spell_pool.size() - 1)
@@ -30,6 +32,7 @@ func _ready() -> void:
 
 
 func add_spell(index: int):
+	spell_book.add_spell(spell_pool[index])
 	spells.append(spell_pool[index])
 	spell_pool.remove_at(index)
 

@@ -36,6 +36,8 @@ func _endOfTurn(correctSpell : bool, playerDamage: int = 0):
 	else:
 		enemyCycler._cycle(correctSpell)
 		player._handleTurnDamage()
+	
+	_endOfWave()
 
 
 func _onCastResult(result: bool) -> void:

@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://ixndd6kejtdp"]
+
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_s6epg"]
+[ext_resource type="Texture2D" uid="uid://ctn6db46nkxwu" path="res://Entities/Enemies/Boar/boar.png" id="2_l5k62"]
+
+[sub_resource type="Animation" id="Animation_s3rq6"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 0.95), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bmdey"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_17jmm"]
+_data = {
+"RESET": SubResource("Animation_bmdey"),
+"idle": SubResource("Animation_s3rq6")
+}
+
+[node name="Boar" type="Node2D"]
+script = ExtResource("1_s6epg")
+monsterType = 2
+damageType = 1
+defaultHealth = 8
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("2_l5k62")
+offset = Vector2(0, -8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_17jmm")
+}
+autoplay = "idle"

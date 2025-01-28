@@ -34,5 +34,6 @@ layout_mode = 0
 offset_left = 552.0
 offset_right = 605.0
 offset_bottom = 76.0
+focus_mode = 0
 
 [connection signal="button_down" from="CloseButton" to="." method="_on_close_button_down"]

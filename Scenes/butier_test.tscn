@@ -54,7 +54,6 @@ region_rect = Rect2(0, 64, 288, 64)
 [node name="Player" type="Node" parent="." groups=["Player"]]
 unique_name_in_owner = true
 script = ExtResource("4_c6554")
-health = 100
 
 [node name="Wizard" parent="Player" instance=ExtResource("5_qitk4")]
 unique_name_in_owner = true

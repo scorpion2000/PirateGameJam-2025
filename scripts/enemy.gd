@@ -3,7 +3,7 @@ class_name Enemy
 
 # This is a wrapper class.
 
-enum MonsterType {GOBLIN, EMPTY}
+enum MonsterType {GOBLIN, EMPTY, BOAR, GOBLIN_LEADER}
 
 const ENEMY_STATS = preload("res://Entities/Enemies/enemy_stats.tscn")
 var enemy_stat_display: EnemyStatDisplay
@@ -82,11 +82,11 @@ func _takeDamage(damageTaken : int):
 func animate_attack():
 	if monsterType != MonsterType.EMPTY:
 		var tween = create_tween()
-		tween.tween_property($Goblin, "position", Vector2(-30, 0), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+		tween.tween_property($Body, "position", Vector2(-30, 0), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
 		await tween.finished
 		_on_attacked.emit()
 		tween = create_tween()
-		tween.tween_property($Goblin, "position", Vector2(0, 0), 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUINT)
+		tween.tween_property($Body, "position", Vector2(0, 0), 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUINT)
 		await tween.finished
 		_on_attack_ended.emit()
 	
