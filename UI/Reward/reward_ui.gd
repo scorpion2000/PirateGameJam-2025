@@ -25,24 +25,15 @@ func activate_ui():
 		var card = card_buttons[i]
 		if i < rewards.size():
 			var reward = rewards[i]
-			match reward.type:
-				RewardType.SPELL:
-					card.setup_card(reward.spell.word, RewardCard.RewardType.SPELL, reward.spell)
-				RewardType.STATS:
-					card.setup_card("Heal by %d" % reward.stat, RewardCard.RewardType.STATS, reward.stat)
+			if randf() >= 0.8 and PlayerData.spell_size > 2:
+				card.setup_card(reward, RewardCard.RewardType.SPELL_SIZE)
+			else:
+				card.setup_card(reward, randi_range(0, 2))
 		else:
 			card.visible = false
 
 func get_rewards() -> Array:
-	var rewards = []
-	var new_spells = get_new_spells()
-	
-	for i in range(min(new_spells.size(), 2)):
-		rewards.append({ "type": RewardType.SPELL, "spell": new_spells[i] })
-	
-	if stat_upgrades.size() > 0:
-		var stat = stat_upgrades[randi() % stat_upgrades.size()]
-		rewards.append({ "type": RewardType.STATS, "stat": stat })
+	var rewards = get_new_spells()
 	
 	rewards.shuffle()
 	return rewards

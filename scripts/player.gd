@@ -16,6 +16,9 @@ var health : int = PlayerData.base_health :
 		if healthLabel: healthLabel.text = str(value)
 
 func _ready():
+	
+	PlayerData.player = self
+	
 	_takeDamage(0)
 	
 	var bullet_tween: Tween = create_tween()

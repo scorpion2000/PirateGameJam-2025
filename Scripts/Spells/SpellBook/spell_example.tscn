@@ -8,12 +8,12 @@
 atlas = ExtResource("1_d5708")
 region = Rect2(0, 0, 9, 9)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n826q"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1u6cv"]
 load_path = "res://.godot/imported/spell_condition.png-65a2e45ed17265aa1272a5dc3da26c46.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_883fm"]
 resource_local_to_scene = true
-atlas = SubResource("CompressedTexture2D_n826q")
+atlas = SubResource("CompressedTexture2D_1u6cv")
 region = Rect2(8, 9, 9, 9)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_arkcr"]
@@ -22,7 +22,7 @@ region = Rect2(8, 0, 9, 9)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sfp34"]
 resource_local_to_scene = true
-atlas = SubResource("CompressedTexture2D_n826q")
+atlas = SubResource("CompressedTexture2D_1u6cv")
 region = Rect2(8, 9, 9, 9)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6l81"]
@@ -31,7 +31,7 @@ region = Rect2(16, 0, 9, 9)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wf2f0"]
 resource_local_to_scene = true
-atlas = SubResource("CompressedTexture2D_n826q")
+atlas = SubResource("CompressedTexture2D_1u6cv")
 region = Rect2(8, 9, 9, 9)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tp7hb"]

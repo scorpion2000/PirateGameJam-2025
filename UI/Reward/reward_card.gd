@@ -1,44 +1,64 @@
 extends Button
 class_name RewardCard
 
-@onready var type_label: Label = %Type
-@onready var name_label: Label = %Name
-@onready var texture_rect: TextureRect = %TextureRect
+@onready var spell_label: Label = %Spell
+@onready var stat_upgrade: Label = %StatUpgrade
+@onready var condition: HBoxContainer = %Condition
 
-enum RewardType { SPELL, STATS }
+enum RewardType { DAMAGE, HEAL, MAX_HP, SPELL_SIZE}
 var card_type: RewardType
-var card_reward
+var spell_reward
 var card_stat: int = 0
+
 
 func _enter_tree() -> void:
 	pressed.connect(_on_pressed)
 
-func setup_card(reward_name: String, type: RewardType, reward: Variant):
+func setup_card(spell: Spell, type: RewardType):
+	spell_reward = spell
 	card_type = type
-	type_label.text = "Word"
-	name_label.text = reward_name
-	card_reward = reward
+	spell_label.text = "New Magic Word\n%s" % spell.word
 	self.visible = true
 	
 	match card_type:
-		RewardType.SPELL:
-			type_label.text = "New Word:"
-		RewardType.STATS:
-			type_label.text = "Stats"
+		RewardType.DAMAGE:
+			stat_upgrade.text = "Damage +2\nCurrently: %s" % PlayerData.base_attack
+		RewardType.HEAL:
+			stat_upgrade.text = "Heal 10\nCurrently: %s" % PlayerData.player.health
+		RewardType.MAX_HP:
+			stat_upgrade.text = "Max Health +5\nCurrently: %s" % PlayerData.base_health
+		RewardType.SPELL_SIZE:
+			stat_upgrade.text = "Spell size -1\nCurrently: %s" % PlayerData.spell_size
+	
+	for i in spell.conditions:
+		match i.color:
+			GlobalSpells.SpellColor.RED:
+				condition.get_child(0).visible = true
+				condition.get_child(0).current_mark = i.status
+			GlobalSpells.SpellColor.BLUE:
+				condition.get_child(1).visible = true
+				condition.get_child(1).current_mark = i.status
+			GlobalSpells.SpellColor.GREEN:
+				condition.get_child(2).visible = true
+				condition.get_child(2).current_mark = i.status
+			GlobalSpells.SpellColor.YELLOW:
+				condition.get_child(3).visible = true
+				condition.get_child(3).current_mark = i.status
 
 func _on_pressed() -> void:
+
+	var spell_index = PlayerData.spell_pool.find(spell_reward)
+	if spell_index != -1:
+		PlayerData.add_spell(spell_index)
+	
 	match card_type:
-		RewardType.SPELL:
-			var spell : Spell = card_reward as Spell
-			var spell_index = PlayerData.spell_pool.find(spell)
-			if spell_index != -1:
-				PlayerData.add_spell(spell_index)
+		RewardType.DAMAGE:
+			PlayerData.base_attack += 2
+		RewardType.HEAL:
+			PlayerData.player.health += 10
+		RewardType.MAX_HP:
+			var health_percentage = float(PlayerData.player.health / PlayerData.base_health)
+			PlayerData.base_health = roundi(PlayerData.base_health * health_percentage)
+		RewardType.SPELL_SIZE:
+			PlayerData.spell_size = clampi(PlayerData.spell_size - 1, 2, 999999)
 			
-			for spellx in PlayerData.spells:
-				print(spellx.word)
-		RewardType.STATS:
-			var player = get_tree().get_first_node_in_group("Player") as Player
-			player.health += card_reward as float
-			print(player.health)
-			if player.health > 100:
-				player.health = 100

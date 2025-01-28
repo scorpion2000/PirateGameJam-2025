@@ -15,6 +15,7 @@ var spell_book: SpellBook = null
 var base_health: int = 10
 var base_attack: int = 3
 
+var player: Player = null
 
 func _ready() -> void:
 	spell_pool = GlobalSpells.spells.duplicate()
