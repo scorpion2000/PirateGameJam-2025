@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://co42opb5tv26i"]
+
+[ext_resource type="Script" path="res://Global/Music/global_music.gd" id="1_eu8gn"]
+[ext_resource type="AudioStream" uid="uid://f5meu68q24bg" path="res://Global/Music/menu_music.ogg" id="2_vejhu"]
+[ext_resource type="AudioStream" uid="uid://0aqryquh8nxv" path="res://Global/Music/combat_phase.ogg" id="3_q7op5"]
+[ext_resource type="AudioStream" uid="uid://cxaaubhm25rio" path="res://Global/Music/card_phase.ogg" id="4_63dr8"]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_iljep"]
+stream_count = 3
+stream_0/stream = ExtResource("2_vejhu")
+stream_0/volume = -60.0
+stream_1/stream = ExtResource("3_q7op5")
+stream_1/volume = -60.0
+stream_2/stream = ExtResource("4_63dr8")
+stream_2/volume = -60.0
+
+[node name="GlobalMusic" type="Node"]
+script = ExtResource("1_eu8gn")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamSynchronized_iljep")
+autoplay = true
+bus = &"Music"

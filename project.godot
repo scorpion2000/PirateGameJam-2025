@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 GlobalSpells="*res://Scripts/Spells/spells.gd"
 PlayerData="*res://Global/player_data.gd"
 GameManager="*res://Global/game_manager.gd"
+GlobalMusic="*res://Global/Music/global_music.tscn"
 
 [display]
 
