@@ -37,6 +37,9 @@ func add_spell(spell: Spell):
 func set_open():
 	is_open = !is_open
 	
+	$AudioStreamPlayer.pitch_scale = randf_range(0.8, 1.2)
+	$AudioStreamPlayer.play()
+	
 	if is_open:
 		var tween: Tween = get_tree().create_tween()
 		tween.tween_property(self, "position", Vector2(248, 115), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)

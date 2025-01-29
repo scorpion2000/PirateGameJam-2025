@@ -5,6 +5,7 @@ extends Node2D
 func _ready() -> void:
 	
 	GameManager.entity_stats_holder = $CanvasLayer/EntityStatsDisplay
+	GlobalMusic.switch_music(GlobalMusic.GamePhase.COMBAT)
 	
 	await get_tree().process_frame
 	

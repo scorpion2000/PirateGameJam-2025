@@ -1,7 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://3jawxaqfumoj"]
+[gd_scene load_steps=8 format=3 uid="uid://3jawxaqfumoj"]
 
 [ext_resource type="Texture2D" uid="uid://bbbpkrojfvemv" path="res://Scripts/Spells/SpellBook/book.png" id="1_scu57"]
 [ext_resource type="Script" path="res://Scripts/Spells/SpellBook/spell_book.gd" id="2_k3mqr"]
+[ext_resource type="AudioStream" uid="uid://dudkkd3stbq1n" path="res://Scripts/Spells/SpellBook/open_book.ogg" id="3_j3n2u"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1u6cv"]
+load_path = "res://.godot/imported/spell_condition.png-65a2e45ed17265aa1272a5dc3da26c46.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwdi1"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_1u6cv")
+region = Rect2(0, 9, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxnkq"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_1u6cv")
+region = Rect2(8, 9, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr1po"]
+resource_local_to_scene = true
+atlas = SubResource("CompressedTexture2D_1u6cv")
+region = Rect2(16, 9, 9, 9)
 
 [node name="SpellBook" type="TextureRect"]
 anchors_preset = 8
@@ -35,5 +54,79 @@ offset_left = 552.0
 offset_right = 605.0
 offset_bottom = 76.0
 focus_mode = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 22.0
+offset_right = 634.0
+offset_bottom = 504.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Help & Tips:
+
+Spells are combinations of
+random magic words you have unlocked.
+
+Listen to the Wizard's spells and switch
+the gems on or off based on each
+word's conditions.
+
+    - On
+    - Off
+    - Toggle
+
+If the gems are set correctly the
+Wizard can successfully attack!"
+
+[node name="TextureRect" type="TextureRect" parent="Label"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Mark" type="TextureRect" parent="Label"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 188.0
+offset_right = -259.0
+offset_bottom = -276.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_pwdi1")
+
+[node name="Mark2" type="TextureRect" parent="Label"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 210.0
+offset_right = -259.0
+offset_bottom = -254.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_vxnkq")
+
+[node name="Mark3" type="TextureRect" parent="Label"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 232.0
+offset_right = -259.0
+offset_bottom = -232.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_qr1po")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_j3n2u")
+bus = &"SFX"
 
 [connection signal="button_down" from="CloseButton" to="." method="_on_close_button_down"]

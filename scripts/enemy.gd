@@ -92,7 +92,7 @@ func _takeDamage(damageTaken : int):
 
 
 func animate_attack():
-	if monsterType != MonsterType.EMPTY:
+	if monsterType != MonsterType.EMPTY and turnsToAttack <= 1:
 		var tween = create_tween()
 		tween.tween_property($Body, "position", Vector2(-30, 0), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
 		await tween.finished
@@ -100,6 +100,11 @@ func animate_attack():
 		tween = create_tween()
 		tween.tween_property($Body, "position", Vector2(0, 0), 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUINT)
 		await tween.finished
+		_on_attack_ended.emit()
+	else:
+		await get_tree().create_timer(0.5).timeout
+		_on_attacked.emit()
+		await get_tree().create_timer(0.5).timeout
 		_on_attack_ended.emit()
 	
 func _tryAttack():

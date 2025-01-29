@@ -32,6 +32,7 @@ theme_override_font_sizes/font_size = 10
 text = "Slash"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = SubResource("NoiseTexture2D_v65im")
 
 [node name="Control" type="Control" parent="."]

@@ -48,3 +48,4 @@ func get_new_spells() -> Array:
 func _on_card_pressed():
 	self.visible = false
 	reward_selected.emit()
+	$"../SpellPanel".start_spell()

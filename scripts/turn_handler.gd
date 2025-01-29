@@ -33,9 +33,12 @@ func _endOfTurn(correctSpell : bool, playerDamage: int = 0):
 		player._addDamage(enemyCycler._getFirstDamage())
 		enemyCycler._removeFirstEmpty()
 		player._handleTurnDamage()
+		
+		enemyCycler._cycle(enemyCycler._isFirstEmpty())
 	else:
 		enemyCycler._cycle(correctSpell)
 	player._handleTurnDamage()
+	
 	_endOfWave()
 
 
@@ -45,9 +48,13 @@ func _onCastResult(result: bool) -> void:
 func _dealDamageToEnemy(damage : int) -> bool:
 	var _enemy : Enemy = enemyCycler._getFirstNoneEmpty()
 	
+
 	_enemy._takeDamage(damage)
 	
 	await player._on_attack_end
+	
+	$Hit.pitch_scale = randf_range(0.8, 1.2)
+	$Hit.play()
 	
 	if _enemy.health <= 0:
 		return true

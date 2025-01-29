@@ -19,8 +19,6 @@ func _ready():
 	
 	PlayerData.player = self
 	
-	_takeDamage(0)
-	
 	var bullet_tween: Tween = create_tween()
 	bullet_tween.bind_node(bullet)
 	bullet_tween.tween_property(bullet, "scale", Vector2(1, 0.8), 0.3).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
@@ -52,6 +50,8 @@ func _takeDamage(damage : int):
 	damageIndicator.damage = damage
 	damageIndicator.global_position = spritePos.global_position
 	add_child(damageIndicator)
+	$Hit.pitch_scale = randf_range(0.8, 1.2)
+	$Hit.play()
 
 
 func shoot_bullet(x_pos: float, speed: int = 1):

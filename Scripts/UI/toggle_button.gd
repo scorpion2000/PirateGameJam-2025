@@ -8,6 +8,7 @@ signal button_toggled(_color : GlobalSpells.SpellColor , toggle : bool)
 	set(Value):
 		is_toggled = Value
 		button_toggled.emit(spell_color, Value)
+@onready var gem_sound: AudioStreamPlayer = $"../gem_sound"
 
 var tween: Tween
 var current_position: Vector2
@@ -34,6 +35,9 @@ func _on_button_toggled():
 func toggle():
 	is_toggled = !is_toggled
 	self.modulate = Color(1,1,1) if is_toggled else Color(0.5,0.5,0.5)
+	
+	gem_sound.pitch_scale = randf_range(0.7, 1.3)
+	gem_sound.play()
 
 
 func _on_button_down() -> void:

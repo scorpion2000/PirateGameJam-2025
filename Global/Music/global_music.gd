@@ -14,7 +14,7 @@ func switch_music(phase: GamePhase):
 	
 	current_phase = phase
 	
-	audio.stream.set_sync_stream_volume(phase, 12)
+	audio.stream.set_sync_stream_volume(phase, 0)
 	
 	if phase != GamePhase.MENU:
 		audio.stream.set_sync_stream_volume(GamePhase.MENU, -60)

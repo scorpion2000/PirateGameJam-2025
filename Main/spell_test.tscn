@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d3jlll0lpqj83"]
+[gd_scene load_steps=31 format=3 uid="uid://d3jlll0lpqj83"]
 
 [ext_resource type="Script" path="res://Main/spell_test.gd" id="1_cwvrp"]
 [ext_resource type="Texture2D" uid="uid://o4sog6c85b7o" path="res://Environment/Backgrounds/trees.png" id="2_2kbxk"]
@@ -15,14 +15,18 @@
 [ext_resource type="Texture2D" uid="uid://dotqa0lprd0k2" path="res://Scripts/UI/bottom_panel.png" id="6_rsk1q"]
 [ext_resource type="PackedScene" uid="uid://cct3m3hxs41ul" path="res://Entities/Enemies/Goblin/goblin_enemy.tscn" id="7_2dqcm"]
 [ext_resource type="Script" path="res://Scripts/turn_handler.gd" id="7_eom2x"]
+[ext_resource type="AudioStream" uid="uid://680ugm2p52d2" path="res://Entities/Wizard/yup.mp3" id="7_i31is"]
 [ext_resource type="PackedScene" uid="uid://7254c44kr7o6" path="res://Prefabs/empty_enemy.tscn" id="7_tuftr"]
 [ext_resource type="PackedScene" uid="uid://cicwwp7spnimn" path="res://Entities/Wizard/wizard.tscn" id="8_nlg1d"]
+[ext_resource type="AudioStream" uid="uid://dwwl8p84wyps8" path="res://Entities/Wizard/nuh.mp3" id="8_y4inm"]
+[ext_resource type="AudioStream" uid="uid://culaa35aterqf" path="res://Entities/hurt.wav" id="9_ipukr"]
 [ext_resource type="Script" path="res://Entities/Wizard/wizard_speech_panel.gd" id="10_pfvie"]
 [ext_resource type="PackedScene" uid="uid://3jawxaqfumoj" path="res://Scripts/Spells/SpellBook/spell_book.tscn" id="12_8rvb5"]
 [ext_resource type="PackedScene" uid="uid://ixndd6kejtdp" path="res://Entities/Enemies/Boar/boar.tscn" id="12_q3rvb"]
 [ext_resource type="Texture2D" uid="uid://b85h06v8c67r6" path="res://Scripts/UI/book_icon.png" id="13_3ewc8"]
 [ext_resource type="Texture2D" uid="uid://cx24ccyd5k0xl" path="res://Scripts/UI/SpeechBubble/speech_bubble.png" id="14_hf5hp"]
 [ext_resource type="PackedScene" uid="uid://c7g372cjotvp5" path="res://Prefabs/enemy_cycler.tscn" id="15_mh5mx"]
+[ext_resource type="AudioStream" uid="uid://bitplfo6e3o1n" path="res://UI/SpellCastingUI/gem.ogg" id="21_ra6a8"]
 [ext_resource type="PackedScene" uid="uid://cy5nwhp2fshpw" path="res://UI/Reward/RewardUI.tscn" id="24_joprl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dffhf"]
@@ -80,6 +84,9 @@ texture = ExtResource("6_cwre4")
 region_enabled = true
 region_rect = Rect2(16, 32, 16, 16)
 
+[node name="Hit" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("9_ipukr")
+
 [node name="EnemyCycler" parent="." node_paths=PackedStringArray("monsterGenerator") instance=ExtResource("15_mh5mx")]
 unique_name_in_owner = true
 position = Vector2(-49, 0)
@@ -92,6 +99,9 @@ script = ExtResource("7_eom2x")
 enemyCycler = NodePath("../EnemyCycler")
 player = NodePath("../Player")
 rewardUi = NodePath("../CanvasLayer/RewardUI")
+
+[node name="Hit" type="AudioStreamPlayer" parent="TurnHandler"]
+stream = ExtResource("9_ipukr")
 
 [node name="EnemyGenerator" type="Node" parent="."]
 script = ExtResource("6_hxjg8")
@@ -220,6 +230,9 @@ offset_bottom = 100.0
 pivot_offset = Vector2(50, 50)
 texture = ExtResource("5_alpjs")
 
+[node name="gem_sound" type="AudioStreamPlayer" parent="CanvasLayer/SpellPanel/HBoxContainer"]
+stream = ExtResource("21_ra6a8")
+
 [node name="WizardSpeechPanel" type="TextureRect" parent="CanvasLayer/SpellPanel"]
 layout_mode = 0
 offset_left = 66.0
@@ -278,11 +291,20 @@ scale = Vector2(4, 4)
 pivot_offset = Vector2(12, 16)
 texture = ExtResource("13_3ewc8")
 
-[node name="SpellBook" parent="CanvasLayer" instance=ExtResource("12_8rvb5")]
-offset_top = 352.0
-offset_bottom = 880.0
+[node name="Success" type="AudioStreamPlayer" parent="CanvasLayer/SpellPanel"]
+stream = ExtResource("7_i31is")
+volume_db = 10.0
+bus = &"SFX"
+
+[node name="Failure" type="AudioStreamPlayer" parent="CanvasLayer/SpellPanel"]
+stream = ExtResource("8_y4inm")
+volume_db = 10.0
+
+[node name="WizardTalk" type="AudioStreamPlayer" parent="CanvasLayer/SpellPanel"]
+bus = &"SFX"
 
 [node name="RewardUI" parent="CanvasLayer" instance=ExtResource("24_joprl")]
+visible = false
 custom_minimum_size = Vector2(500, 250)
 anchor_left = 0.283
 anchor_top = 0.086
@@ -294,6 +316,10 @@ offset_right = 55.016
 offset_bottom = 41.144
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="SpellBook" parent="CanvasLayer" instance=ExtResource("12_8rvb5")]
+offset_top = 352.0
+offset_bottom = 880.0
 
 [connection signal="button_down" from="CanvasLayer/SpellPanel/CastButton" to="CanvasLayer/SpellPanel" method="_on_cast_button_down"]
 [connection signal="button_down" from="CanvasLayer/SpellPanel/OpenSpellBook" to="CanvasLayer/SpellPanel" method="_on_open_spell_book_button_down"]

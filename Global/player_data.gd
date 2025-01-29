@@ -12,8 +12,8 @@ var spell_pool: Array[Spell]
 var spell_book: SpellBook = null
 
 
-var base_health: int = 10
-var base_attack: int = 3
+var base_health: int = 30
+var base_attack: int = 5
 
 var player: Player = null
 

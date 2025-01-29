@@ -34,8 +34,9 @@ func _cycle(removeFirst : bool):
 	for sprite in enemies:
 		_moveSprite(i, sprite)
 		i = i + 1
-	if enemies[0].monsterType != Enemy.MonsterType.EMPTY:
-		enemies[0]._startTimer()
+	if enemies.size() > 0:
+		if enemies[0].monsterType != Enemy.MonsterType.EMPTY:
+			enemies[0]._startTimer()
 	if DEBUG:
 		_DEBUG_generate_image(enemies.size())
 	#_monsterRequest()

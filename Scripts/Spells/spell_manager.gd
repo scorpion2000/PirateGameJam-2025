@@ -11,6 +11,10 @@ var current_spell: Array[Spell]
 
 var can_cast: bool = false
 
+@onready var success_sound: AudioStreamPlayer = $Success
+@onready var failure_sound: AudioStreamPlayer = $Failure
+@onready var wizard_talk_sound: AudioStreamPlayer = $WizardTalk
+
 func _ready() -> void:
 	await get_tree().process_frame
 	
@@ -66,10 +70,14 @@ func cast_spell():
 		if current_result == GlobalSpells.get_expected_result(current_spell):
 			speak("Success")
 			%TurnHandler._endOfTurn(true, PlayerData.base_attack)
+			success_sound.pitch_scale = randf_range(0.9, 1.1)
+			success_sound.play()
 			%Wizard.get_parent().shoot_bullet(%EnemyCycler._getFirstNoneEmpty().global_position.x, %EnemyCycler._getPositionOfFirstNoneEmpty())
 		else:
 			speak("Failure")
 			%TurnHandler._endOfTurn(false)
+			failure_sound.pitch_scale = randf_range(0.9, 1.1)
+			failure_sound.play()
 		
 		can_cast = false
 		
@@ -80,7 +88,8 @@ func cast_spell():
 		$SpellCooldown.start()
 		await $SpellCooldown.timeout
 		
-		start_spell()
+		if %EnemyCycler._getNonEmptyCount() > 0:
+			start_spell()
 
 
 func _on_cast_button_down() -> void:
