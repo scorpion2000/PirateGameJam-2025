@@ -19,14 +19,20 @@ var enemy_stat_display: EnemyStatDisplay
 ## Bosses drop stuff
 @export var boss : bool = false
 @export var defaultHealth : int = 1
+@export var chargeup : bool = true
+@export var chargupTime : float = 10
+@export var turnsToAttack : int = 1
 
 signal _on_attacked
 signal _on_attack_ended
 
 var health : int = 0
 var damage : DamageType = DamageType.new()
+var timer : Timer
+var lastTime : int = 0
 
 func _ready():
+	set_process(false)
 	health = defaultHealth
 	damage.hitPoint = damagePoints
 	if (damageType != DamageType.Type.DEFAULT):
@@ -38,6 +44,11 @@ func _ready():
 			_:
 				damage.type = DamageType.Type.SLASH
 	_updateDisplay()
+
+func _process(_delta):
+	if floor(timer.time_left) < lastTime:
+		lastTime = floor(timer.time_left)
+		_animateTimer()
 
 func _updateDisplay():
 	if enemy_stat_display:
@@ -55,6 +66,7 @@ func _updateDisplay():
 		enemy_stat_display.linked_enemy = self
 		enemy_stat_display.progress_bar.max_value = health
 		enemy_stat_display.progress_bar.value = health
+		enemy_stat_display.timer.visible = false
 		
 		if enemy_stat_display:
 			enemy_stat_display.health.text = "HP: %s" % str(health)
@@ -90,4 +102,35 @@ func animate_attack():
 		await tween.finished
 		_on_attack_ended.emit()
 	
+func _tryAttack():
+	if turnsToAttack <= 1:
+		return true
+	turnsToAttack -= 1
+	return false
+
+func _startTimer():
+	if !chargeup:
+		return
+	if enemy_stat_display == null:
+		_updateDisplay()
+		await get_tree().process_frame
 	
+	timer = Timer.new()
+	add_child(timer)
+	timer.start(chargupTime)
+	timer.timeout.connect(_chargeUp)
+	set_process(true)
+	lastTime = floor(chargupTime)
+	enemy_stat_display.timer.text = str(lastTime)
+	enemy_stat_display.timer.visible = true
+
+func _chargeUp():
+	if chargedDamagePoints == -1:
+		damage.hitPoint = damage.hitPoint * 2
+	else:
+		damage.hitPoint = chargedDamagePoints
+	_updateDisplay()
+
+func _animateTimer():
+	enemy_stat_display.timer.text = str(lastTime)
+	enemy_stat_display.timerAnimation.play("timer_animation")

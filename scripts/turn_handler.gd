@@ -35,8 +35,7 @@ func _endOfTurn(correctSpell : bool, playerDamage: int = 0):
 		player._handleTurnDamage()
 	else:
 		enemyCycler._cycle(correctSpell)
-		player._handleTurnDamage()
-	
+	player._handleTurnDamage()
 	_endOfWave()
 
 
@@ -57,12 +56,12 @@ func _dealDamageToEnemy(damage : int) -> bool:
 
 func _generateWave():
 	#This function has to be called when card selection was made
-	if enemyCycler.enemies.size() != 0:
+	if enemyCycler._getNonEmptyCount() != 0:
 		return
 	enemyCycler._monsterRequest()
 
 func _endOfWave():
-	if enemyCycler.enemies.size() != 0:
+	if enemyCycler._getNonEmptyCount() != 0:
 		return
 	#Call the end of round card selection here
 	rewardUi.activate_ui()
