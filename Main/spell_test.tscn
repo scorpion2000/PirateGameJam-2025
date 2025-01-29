@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d3jlll0lpqj83"]
+[gd_scene load_steps=32 format=3 uid="uid://d3jlll0lpqj83"]
 
 [ext_resource type="Script" path="res://Main/spell_test.gd" id="1_cwvrp"]
 [ext_resource type="Texture2D" uid="uid://o4sog6c85b7o" path="res://Environment/Backgrounds/trees.png" id="2_2kbxk"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://ixndd6kejtdp" path="res://Entities/Enemies/Boar/boar.tscn" id="12_q3rvb"]
 [ext_resource type="Texture2D" uid="uid://b85h06v8c67r6" path="res://Scripts/UI/book_icon.png" id="13_3ewc8"]
 [ext_resource type="Texture2D" uid="uid://cx24ccyd5k0xl" path="res://Scripts/UI/SpeechBubble/speech_bubble.png" id="14_hf5hp"]
+[ext_resource type="PackedScene" uid="uid://c73mce0bd75pc" path="res://Entities/Enemies/GoblinLeader/goblin_leader.tscn" id="14_wgxkp"]
 [ext_resource type="PackedScene" uid="uid://c7g372cjotvp5" path="res://Prefabs/enemy_cycler.tscn" id="15_mh5mx"]
 [ext_resource type="AudioStream" uid="uid://bitplfo6e3o1n" path="res://UI/SpellCastingUI/gem.ogg" id="21_ra6a8"]
 [ext_resource type="PackedScene" uid="uid://cy5nwhp2fshpw" path="res://UI/Reward/RewardUI.tscn" id="24_joprl"]
@@ -107,7 +108,7 @@ stream = ExtResource("9_ipukr")
 script = ExtResource("6_hxjg8")
 emptyEnemy = ExtResource("7_tuftr")
 enemies = Array[PackedScene]([ExtResource("7_2dqcm"), ExtResource("12_q3rvb")])
-bosses = Array[PackedScene]([ExtResource("7_2dqcm")])
+bosses = Array[PackedScene]([ExtResource("14_wgxkp")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

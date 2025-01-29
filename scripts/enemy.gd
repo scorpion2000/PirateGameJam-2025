@@ -22,6 +22,7 @@ var enemy_stat_display: EnemyStatDisplay
 @export var chargeup : bool = true
 @export var chargupTime : float = 10
 @export var turnsToAttack : int = 1
+@export var animationDistance: float = -30.0
 
 signal _on_attacked
 signal _on_attack_ended
@@ -93,8 +94,12 @@ func _takeDamage(damageTaken : int):
 
 func animate_attack():
 	if monsterType != MonsterType.EMPTY and turnsToAttack <= 1:
+		
+		if monsterType == MonsterType.GOBLIN_LEADER:
+			$AnimationPlayer.play("attack")
+		
 		var tween = create_tween()
-		tween.tween_property($Body, "position", Vector2(-30, 0), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+		tween.tween_property($Body, "position", Vector2(animationDistance, 0), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
 		await tween.finished
 		_on_attacked.emit()
 		tween = create_tween()
@@ -139,3 +144,6 @@ func _chargeUp():
 func _animateTimer():
 	enemy_stat_display.timer.text = str(lastTime)
 	enemy_stat_display.timerAnimation.play("timer_animation")
+
+func idle_animation():
+	$AnimationPlayer.play("idle")
