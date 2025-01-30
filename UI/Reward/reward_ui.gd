@@ -19,6 +19,9 @@ func _ready() -> void:
 	#activate_ui()
 
 func activate_ui():
+	
+	GlobalMusic.switch_music(GlobalMusic.GamePhase.CARDS)
+	
 	self.visible = true
 	var rewards = get_rewards()
 	for i in range(card_buttons.size()):
@@ -46,6 +49,9 @@ func get_new_spells() -> Array:
 	return available_spells
 
 func _on_card_pressed():
+	
+	GlobalMusic.switch_music(GlobalMusic.GamePhase.COMBAT)
+	
 	self.visible = false
 	reward_selected.emit()
 	$"../SpellPanel".start_spell()

@@ -5,15 +5,24 @@ var damageBuffer : Array[DamageType]
 signal turnReady
 signal _on_attack_end
 
-@onready var healthLabel : Label = self.get_node("HealthLabel")
+@onready var healthLabel : Label = $"../CanvasLayer/SpellPanel/ProgressBar/Health"
+@onready var progress_bar: ProgressBar = $"../CanvasLayer/SpellPanel/ProgressBar"
 @onready var spritePos : Node2D = $Wizard
 @onready var bullet: Sprite2D = $Bullet
 @onready var blast: Sprite2D = $Blast
 
-var health : int = PlayerData.base_health :
+var max_health: int :
+	set(value):
+		max_health = value
+		if progress_bar.value >= value:
+			progress_bar.value = value
+		progress_bar.max_value = value
+	
+var health : int :
 	set(value):
 		health = value
 		if healthLabel: healthLabel.text = str(value)
+		progress_bar.value = value
 
 func _ready():
 	
@@ -24,6 +33,9 @@ func _ready():
 	bullet_tween.tween_property(bullet, "scale", Vector2(1, 0.8), 0.3).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	bullet_tween.tween_property(bullet, "scale", Vector2(1, 1), 0.3).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	bullet_tween.set_loops()
+	
+	health = PlayerData.base_health
+	max_health = PlayerData.base_health
 
 func _handleTurnDamage():
 	var _damageBuffer : Array[DamageType]

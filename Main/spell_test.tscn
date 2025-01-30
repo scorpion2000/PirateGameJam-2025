@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d3jlll0lpqj83"]
+[gd_scene load_steps=36 format=3 uid="uid://d3jlll0lpqj83"]
 
 [ext_resource type="Script" path="res://Main/spell_test.gd" id="1_cwvrp"]
 [ext_resource type="Texture2D" uid="uid://o4sog6c85b7o" path="res://Environment/Backgrounds/trees.png" id="2_2kbxk"]
@@ -29,6 +29,8 @@
 [ext_resource type="PackedScene" uid="uid://c7g372cjotvp5" path="res://Prefabs/enemy_cycler.tscn" id="15_mh5mx"]
 [ext_resource type="AudioStream" uid="uid://bitplfo6e3o1n" path="res://UI/SpellCastingUI/gem.ogg" id="21_ra6a8"]
 [ext_resource type="PackedScene" uid="uid://cy5nwhp2fshpw" path="res://UI/Reward/RewardUI.tscn" id="24_joprl"]
+[ext_resource type="Texture2D" uid="uid://bpc1d3l3iu0ij" path="res://UI/Icons/healthbar.png" id="28_gtcyb"]
+[ext_resource type="Texture2D" uid="uid://dal4x5cpj1uty" path="res://UI/Icons/healthbar_fill.png" id="29_wwbwp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dffhf"]
 atlas = ExtResource("14_hf5hp")
@@ -37,6 +39,20 @@ region = Rect2(4, 1, 72, 21)
 [sub_resource type="AtlasTexture" id="AtlasTexture_4mrha"]
 atlas = ExtResource("14_hf5hp")
 region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dui0m"]
+texture = ExtResource("28_gtcyb")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e3fu3"]
+texture = ExtResource("29_wwbwp")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
 
 [node name="SpellTest" type="Node2D"]
 script = ExtResource("1_cwvrp")
@@ -64,14 +80,6 @@ script = ExtResource("4_omskc")
 [node name="Wizard" parent="Player" instance=ExtResource("8_nlg1d")]
 unique_name_in_owner = true
 position = Vector2(-90, 0)
-
-[node name="HealthLabel" type="Label" parent="Player"]
-offset_left = -96.0
-offset_right = -56.0
-offset_bottom = 23.0
-scale = Vector2(0.3, 0.3)
-text = "0"
-horizontal_alignment = 1
 
 [node name="Bullet" type="Sprite2D" parent="Player"]
 visible = false
@@ -303,6 +311,28 @@ volume_db = 10.0
 
 [node name="WizardTalk" type="AudioStreamPlayer" parent="CanvasLayer/SpellPanel"]
 bus = &"SFX"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/SpellPanel"]
+layout_mode = 0
+offset_left = 185.0
+offset_top = -30.0
+offset_right = 219.0
+offset_bottom = -23.0
+scale = Vector2(2, 2)
+theme_override_styles/background = SubResource("StyleBoxTexture_dui0m")
+theme_override_styles/fill = SubResource("StyleBoxTexture_e3fu3")
+value = 100.0
+show_percentage = false
+
+[node name="Health" type="Label" parent="CanvasLayer/SpellPanel/ProgressBar"]
+layout_mode = 0
+offset_left = -18.0
+offset_right = 21.0
+offset_bottom = 18.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(50, 0)
+text = "0"
+horizontal_alignment = 1
 
 [node name="RewardUI" parent="CanvasLayer" instance=ExtResource("24_joprl")]
 visible = false

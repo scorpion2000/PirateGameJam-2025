@@ -58,6 +58,7 @@ func _on_pressed() -> void:
 			PlayerData.player.health += 10
 		RewardType.MAX_HP:
 			var health_percentage = float(PlayerData.player.health / PlayerData.base_health)
+			PlayerData.player.max_health = roundi(PlayerData.base_health * health_percentage)
 			PlayerData.base_health = roundi(PlayerData.base_health * health_percentage)
 		RewardType.SPELL_SIZE:
 			PlayerData.spell_size = clampi(PlayerData.spell_size - 1, 2, 999999)
