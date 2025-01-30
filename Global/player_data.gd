@@ -17,6 +17,7 @@ var base_attack: int = 5
 
 var player: Player = null
 
+signal death
 
 func setup_new_player_data():
 	spell_size = 2

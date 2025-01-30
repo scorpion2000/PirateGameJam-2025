@@ -2,6 +2,8 @@ extends Node
 class_name Player
 
 var damageBuffer : Array[DamageType]
+var is_dead: bool = false
+
 signal turnReady
 signal _on_attack_end
 
@@ -11,7 +13,6 @@ signal _on_attack_end
 @onready var bullet: Sprite2D = $Bullet
 @onready var blast: Sprite2D = $Blast
 
-var is_dead: bool = false
 
 var max_health: int :
 	set(value):
@@ -72,6 +73,8 @@ func _takeDamage(damage : int):
 	add_child(damageIndicator)
 	$Hit.pitch_scale = randf_range(0.8, 1.2)
 	$Hit.play()
+	if health <= 0:
+		PlayerData.death.emit()
 
 
 func shoot_bullet(x_pos: float, speed: int = 1):
