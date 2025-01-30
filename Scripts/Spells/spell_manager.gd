@@ -14,6 +14,7 @@ var can_cast: bool = false
 @onready var success_sound: AudioStreamPlayer = $Success
 @onready var failure_sound: AudioStreamPlayer = $Failure
 @onready var wizard_talk_sound: AudioStreamPlayer = $WizardTalk
+@onready var death_screen: ColorRect = $"../DeathScreen"
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -23,30 +24,33 @@ func _ready() -> void:
 	$HBoxContainer/Green.button_toggled.connect(update_result)
 	$HBoxContainer/Yellow.button_toggled.connect(update_result)
 	
+	await get_tree().create_timer(0.5).timeout
+	
 	start_spell()
 
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("open_spell_book"):
-		toggle_open_book()
-	
-	
-	if Input.is_action_just_pressed("cast_spell"):
-		cast_spell()
-	
-	
-	if Input.is_action_just_pressed("toggle_red"):
-		$HBoxContainer/Red.toggle()
-		$HBoxContainer/Red.animate_button_press()
-	if Input.is_action_just_pressed("toggle_blue"):
-		$HBoxContainer/Blue.toggle()
-		$HBoxContainer/Blue.animate_button_press()
-	if Input.is_action_just_pressed("toggle_green"):
-		$HBoxContainer/Green.toggle()
-		$HBoxContainer/Green.animate_button_press()
-	if Input.is_action_just_pressed("toggle_yellow"):
-		$HBoxContainer/Yellow.toggle()
-		$HBoxContainer/Yellow.animate_button_press()
+	if not PlayerData.player.is_dead:
+		if Input.is_action_just_pressed("open_spell_book"):
+			toggle_open_book()
+		
+		
+		if Input.is_action_just_pressed("cast_spell"):
+			cast_spell()
+		
+		
+		if Input.is_action_just_pressed("toggle_red"):
+			$HBoxContainer/Red.toggle()
+			$HBoxContainer/Red.animate_button_press()
+		if Input.is_action_just_pressed("toggle_blue"):
+			$HBoxContainer/Blue.toggle()
+			$HBoxContainer/Blue.animate_button_press()
+		if Input.is_action_just_pressed("toggle_green"):
+			$HBoxContainer/Green.toggle()
+			$HBoxContainer/Green.animate_button_press()
+		if Input.is_action_just_pressed("toggle_yellow"):
+			$HBoxContainer/Yellow.toggle()
+			$HBoxContainer/Yellow.animate_button_press()
 
 
 func update_result(spell_color: GlobalSpells.SpellColor, value):
@@ -61,12 +65,12 @@ func start_spell():
 	
 	%Wizard.animation_player.play("spell_start")
 	await %Wizard.animation_player.animation_finished
-	if can_cast:
+	if can_cast and not PlayerData.player.is_dead:
 		%Wizard.animation_player.play("spell_wait")
 
 
 func cast_spell():
-	if can_cast:
+	if can_cast and not PlayerData.player.is_dead:
 		if current_result == GlobalSpells.get_expected_result(current_spell):
 			speak("Success")
 			%TurnHandler._endOfTurn(true, PlayerData.base_attack)
@@ -118,3 +122,9 @@ func _on_hover_book(is_over: bool = true):
 	else:
 		var tween = create_tween()
 		tween.tween_property($OpenSpellBook/TextureRect, "position", Vector2(33, 51), 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
+
+
+func show_death_screen():
+	death_screen.show()
+	var tween = create_tween()
+	tween.tween_property(death_screen, "modulate", Color(1, 1, 1), 1.0)

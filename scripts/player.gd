@@ -11,6 +11,8 @@ signal _on_attack_end
 @onready var bullet: Sprite2D = $Bullet
 @onready var blast: Sprite2D = $Blast
 
+var is_dead: bool = false
+
 var max_health: int :
 	set(value):
 		max_health = value
@@ -23,6 +25,12 @@ var health : int :
 		health = value
 		if healthLabel: healthLabel.text = str(value)
 		progress_bar.value = value
+		
+		if not is_dead and health <= 0:
+			is_dead = true
+			spritePos.animation_player.play("death")
+			$"../CanvasLayer/SpellPanel".show_death_screen()
+
 
 func _ready():
 	

@@ -17,19 +17,29 @@ var base_attack: int = 5
 
 var player: Player = null
 
-func _ready() -> void:
+
+func setup_new_player_data():
+	spell_size = 2
+	base_health = 30
+	base_attack = 5
+	spells.clear()
+	spell_pool.clear()
 	spell_pool = GlobalSpells.spells.duplicate()
 	
 	await get_tree().process_frame
 	
 	# Add 2 random spells to start
-	for i in 2:
-		var random: int = randi_range(0, spell_pool.size() - 1)
-		add_spell(random)
+	add_starter_spells()
+
+
+func add_starter_spells():
+	var starter_pool = GlobalSpells.starter_spells.duplicate()
 	
-	# Just to debug, delete if you will
-	for i in generate_spell():
-		print(i.word)
+	for i in 2:
+		var index: int = randi_range(0, starter_pool.size() - 1)
+		spell_book.add_spell(starter_pool[index])
+		spells.append(starter_pool[index])
+		starter_pool.remove_at(index)
 
 
 func add_spell(index: int):

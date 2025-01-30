@@ -4,6 +4,8 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
+	PlayerData.setup_new_player_data()
+	
 	GameManager.entity_stats_holder = $CanvasLayer/EntityStatsDisplay
 	GlobalMusic.switch_music(GlobalMusic.GamePhase.COMBAT)
 	
