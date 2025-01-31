@@ -30,7 +30,6 @@ var health : int :
 		if not is_dead and health <= 0:
 			is_dead = true
 			spritePos.animation_player.play("death")
-			$"../CanvasLayer/SpellPanel".show_death_screen()
 
 
 func _ready():
@@ -38,9 +37,9 @@ func _ready():
 	PlayerData.player = self
 	
 	var bullet_tween: Tween = create_tween()
-	bullet_tween.bind_node(bullet)
 	bullet_tween.tween_property(bullet, "scale", Vector2(1, 0.8), 0.3).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 	bullet_tween.tween_property(bullet, "scale", Vector2(1, 1), 0.3).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
+	bullet_tween.bind_node(bullet)
 	bullet_tween.set_loops()
 	
 	health = PlayerData.base_health

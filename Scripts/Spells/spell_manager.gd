@@ -14,7 +14,6 @@ var can_cast: bool = false
 @onready var success_sound: AudioStreamPlayer = $Success
 @onready var failure_sound: AudioStreamPlayer = $Failure
 @onready var wizard_talk_sound: AudioStreamPlayer = $WizardTalk
-@onready var death_screen: ColorRect = $"../DeathScreen"
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -122,9 +121,3 @@ func _on_hover_book(is_over: bool = true):
 	else:
 		var tween = create_tween()
 		tween.tween_property($OpenSpellBook/TextureRect, "position", Vector2(33, 51), 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
-
-
-func show_death_screen():
-	death_screen.show()
-	var tween = create_tween()
-	tween.tween_property(death_screen, "modulate", Color(1, 1, 1), 1.0)
