@@ -96,6 +96,7 @@ region_rect = Rect2(16, 32, 16, 16)
 
 [node name="Hit" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("9_ipukr")
+bus = &"SFX"
 
 [node name="EnemyCycler" parent="." node_paths=PackedStringArray("monsterGenerator") instance=ExtResource("15_mh5mx")]
 unique_name_in_owner = true
@@ -112,6 +113,7 @@ rewardUi = NodePath("../CanvasLayer/RewardUI")
 
 [node name="Hit" type="AudioStreamPlayer" parent="TurnHandler"]
 stream = ExtResource("9_ipukr")
+bus = &"SFX"
 
 [node name="EnemyGenerator" type="Node" parent="."]
 script = ExtResource("6_hxjg8")
@@ -242,6 +244,7 @@ texture = ExtResource("5_alpjs")
 
 [node name="gem_sound" type="AudioStreamPlayer" parent="CanvasLayer/SpellPanel/HBoxContainer"]
 stream = ExtResource("21_ra6a8")
+bus = &"SFX"
 
 [node name="WizardSpeechPanel" type="TextureRect" parent="CanvasLayer/SpellPanel"]
 layout_mode = 0
@@ -308,6 +311,7 @@ bus = &"SFX"
 [node name="Failure" type="AudioStreamPlayer" parent="CanvasLayer/SpellPanel"]
 stream = ExtResource("8_y4inm")
 volume_db = 10.0
+bus = &"SFX"
 
 [node name="WizardTalk" type="AudioStreamPlayer" parent="CanvasLayer/SpellPanel"]
 bus = &"SFX"

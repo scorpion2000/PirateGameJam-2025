@@ -69,7 +69,8 @@ random magic words you have unlocked.
 
 Listen to the Wizard's spells and switch
 the gems on or off based on each
-word's conditions.
+word's conditions in the order they are
+said.
 
     - On
     - Off
@@ -89,10 +90,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = 188.0
-offset_right = -259.0
-offset_bottom = -276.0
+offset_left = 2.0
+offset_top = 208.0
+offset_right = -260.0
+offset_bottom = -256.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_pwdi1")
@@ -103,10 +104,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = 210.0
-offset_right = -259.0
-offset_bottom = -254.0
+offset_left = 2.0
+offset_top = 230.0
+offset_right = -260.0
+offset_bottom = -234.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_vxnkq")
@@ -117,10 +118,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = 232.0
-offset_right = -259.0
-offset_bottom = -232.0
+offset_left = 2.0
+offset_top = 252.0
+offset_right = -260.0
+offset_bottom = -212.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_qr1po")

@@ -4,7 +4,7 @@ extends Node
 var spells: Array[Spell]
 
 # Maximum spell size for how many words can be in one full spell, minimum is 2
-var spell_size: int = 2
+var spell_size: int = 3
 
 # Holds all spells that could be added to the player's inventory, to avoid duplicate words
 var spell_pool: Array[Spell]
@@ -54,10 +54,10 @@ func generate_spell():
 	var selected_spells: Array[Spell]
 	var max_size = spell_size
 	
-	if spell_size < spells.size():
-		spell_size = spells.size()
+	if spells.size() < spell_size:
+		max_size = spells.size()
 	
-	for i in spell_size:
+	for i in max_size:
 		var random = randi_range(0, current_spells.size() - 1)
 		selected_spells.append(current_spells[random])
 		current_spells.remove_at(random)

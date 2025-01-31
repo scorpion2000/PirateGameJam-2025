@@ -16,6 +16,4 @@ func _makeVisible():
 	alpha_tween.tween_property(self, "modulate:a", 1, 2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 
 func _restart():
-	var scene = gameScene.instantiate()
-	get_tree().root.add_child(scene)
-	get_parent().queue_free()
+	get_tree().change_scene_to_file("res://Main/spell_test.tscn")
