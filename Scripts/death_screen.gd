@@ -10,6 +10,7 @@ func _ready():
 	restartButton.pressed.connect(_restart)
 
 func _makeVisible():
+	GlobalMusic.switch_music(GlobalMusic.GamePhase.MENU)
 	self.show()
 	var alpha_tween = create_tween()
 	alpha_tween.tween_property(self, "modulate:a", 1, 2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
